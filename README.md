@@ -9,6 +9,7 @@ One dependency-free file, `pet.js`, plain ES5, drawn by its own little software 
 - **Arrives** after 30 seconds on the site (counted across pages, per tab): a door grows out of the floor, he steps out, it sinks away.
 - **Lives through his day.** The longer the visit, the further it goes: walking → coding → podcast → surfing → saxophone → cocktails → skiing → kitesurfing → asleep on the couch. Click him to skip ahead, or to wake him.
 - **Sits down when your cursor rests:** coding at two big screens while four terminals tell one story; recording The Merge podcast; mixing a martini, an old fashioned and a cuba libre at the bar. On skis he hits kickers and rails.
+- **Goes his own way.** Now and then he stops following and walks off on a path of his own: he pulls up a drinks crate and hangs out with a Club-Mate for most of a minute, cartwheels across the page, or dances. Then he comes back to your cursor, and his day carries on where it left off.
 - **Hosts real guests.** Sixteen guests of [The Merge](https://krackedtools.dev/podcasts.html) take turns walking into his studio, each hand-sculpted from their episode (`guests/`). A name tag shows as they sit, and clicking one opens their episode.
 - **Thinks with Jev.** Every 25 seconds a small snapshot of the visit goes to `jev/jev-proxy.mjs`, which asks Jev which activity comes next and which guest fits what you're reading. Without an answer he keeps his own timetable.
 - **Leaves when asked.** Hover him for "send Henni home" (he waves and walks into a door for the rest of the visit) or "pin Henni here".
@@ -32,9 +33,9 @@ He's drawn for a dark page. A few scenes know krackedtools.dev's pages (resting 
 ## Work on him
 
 ```bash
-npm run lab     # http://localhost:8765: the lab swaps variants and jumps to any part of his day
+npm run lab     # http://localhost:8765: the lab swaps variants, jumps to any part of his day or sends him off on an outing
 npm run build   # variants/big-hoodie.js → colourways → pet.js, and guests/ → pet-guests.js
-npm test        # the Jev proxy, the guest studio and the Jev brain, all offline
+npm test        # the Jev proxy, the guest studio, the Jev brain and his outings, all offline
 ```
 
 | Path | What it is |

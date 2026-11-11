@@ -50,6 +50,10 @@
     <div class="label">Jump to</div>
     <div class="acts" id="acts"></div>
   </div>
+  <div class="group">
+    <div class="label">Off on his own</div>
+    <div class="acts" id="outs"></div>
+  </div>
 </aside>
 <script>
   // Variants live in variants/<id>.js; "current" is pet.js, the build that ships.
@@ -65,6 +69,7 @@
     /* VARIANTS:END */
   ];
   var ACTS = [['arrival', -1], ['walk', 0], ['coding', 35], ['podcast', 80], ['surf', 125], ['sax', 170], ['cocktail', 215], ['ski', 275], ['kite', 320], ['sleep', 365]];
+  var OUTS = [['Club-Mate', 'mate'], ['cartwheels', 'wheel'], ['dance', 'dance']];   // an outing right away
   var HERE = location.href.replace(/[?#].*$/, '').replace(/[^\/]*$/, '');      // this lab's folder
   var IN_SITE = /\/pet-lab\/$/.test(HERE.replace(location.origin, ''));      // mounted in krackedtools.dev
   var PAGE = IN_SITE ? '/index.html' : HERE + 'demo.html';
@@ -73,11 +78,12 @@
   var chosen = params.get('v') || 'current';
 
   // Unload the old page first (the pet saves its state on pagehide), then set the time.
-  function jump(at) {
+  function jump(at, out) {
     frame.onload = function () {
       frame.onload = null;
       // 'arrival' replays the door entrance 3 s from now (the real site waits 30 s)
       var st = at < 0 ? { elapsed: 0, wait: 27, arrived: false } : { elapsed: at + 1, arrived: true };
+      if (out) st.outNow = out;
       st.x = Math.max(160, innerWidth * 0.4); st.y = innerHeight * 0.8;
       try { sessionStorage.setItem('kt-pet', JSON.stringify(st)); } catch (e) { /* ignore */ }
       load();
@@ -113,6 +119,14 @@
       b.type = 'button'; b.textContent = a[0];
       b.addEventListener('click', function () { jump(a[1]); });
       aEl.appendChild(b);
+    });
+    var oEl = document.getElementById('outs');
+    oEl.innerHTML = '';
+    OUTS.forEach(function (o) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = o[0];
+      b.addEventListener('click', function () { jump(0, o[1]); });
+      oEl.appendChild(b);
     });
   }
   render(); load();

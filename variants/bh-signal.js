@@ -96,7 +96,11 @@
     // the bar: cola, ice (and a martini's gin), lime / olive
     cola:  ['#1f100a', '#3a1d12', '#55291a', '#6e3824', '#8a4a31'],
     ice:   ['#8fa3b4', '#b9cad8', '#d9e5ee', '#ecf3f8', '#f8fbfd'],
-    lime:  ['#3f5a1f', '#5f7d2c', '#7f9c40', '#9db75c', '#bcd382']
+    lime:  ['#3f5a1f', '#5f7d2c', '#7f9c40', '#9db75c', '#bcd382'],
+    // a Club-Mate on his break: brown glass, a pale label, on a drinks crate
+    mate:  ['#5a3412', '#93592a', '#b07035', '#c98c4a', '#dfab6a'],
+    label: ['#9c8a5c', '#cdb98a', '#e4d4a6', '#f1e6c4', '#f9f2df'],
+    crate: ['#3a3f52', '#5b6582', '#717c9c', '#8a95b4', '#a6b0cc']
   };
   // texture letters → 'ramp', 'ramp±n' (step offset), 'ramp=n' (fixed step) or a flat colour
   var KEYDEF = {
@@ -111,7 +115,8 @@
     X: '#0b0a0e',                                                           // inside the doorway, screen glass
     J: '#221d2b', U: '#3d3647', i: '#c9c3d6',                               // terminal pane, title bar, text
     k: 'gtop-1', n: 'gtop+1', c: 'cola', d: 'ice', e: 'lime',                                               // pine trees on the ski slope
-    D: '#f6f4f9', L: '#f6f4f9'                                              // strings (one white for all); the one accent
+    D: '#f6f4f9', L: '#f6f4f9',                                             // strings (one white for all); the one accent
+    I: 'mate', z: 'mate-1', l: 'label', p: 'crate'                          // the Club-Mate and its crate
   };
   // band (shadow, front, lit, top) → ramp step. 'floor': a one-step-darker texel never goes below
   // this step, so step 0 only ever shows as a crease line and the silhouette stays ≥3:1.
@@ -1609,6 +1614,177 @@
     }
   }
 
+  // ---------- outings: now and then he stops following and goes his own way ----------
+  // After OUT_FIRST seconds on foot (then every OUT_MIN–OUT_MAX, counted across pages) he leaves the
+  // cursor on a path of his own: a Club-Mate break on a drinks crate for most of a minute, cartwheels
+  // across the page, or a dance. His day waits meanwhile. A click (which also skips ahead), a pin or
+  // the podcasts page's studio ends it; the hover bubble holds it. Never on a board, asleep, or out of
+  // a sit-down scene he has settled into.
+  var OUT_FIRST = 45, OUT_MIN = 60, OUT_MAX = 120, OUT_WALK = 95, MATE_T = 50, WHEEL_T = 0.85, WHEEL_PX = 105, TADA_T = 1.5;
+  var OUT_ON = { walk: 1, coding: 1, podcast: 1, sax: 1, cocktail: 1 };
+  var OUT_KINDS = [['mate', 2, 'Club-Mate break'], ['wheel', 1, 'watch this'], ['dance', 1, 'this is my song']];
+  var outing = null, outForce = null;
+  if (typeof state.free !== 'number') state.free = 0;           // seconds on foot since the last outing
+  if (typeof state.outIn !== 'number') state.outIn = OUT_FIRST;  // ... when the next one is due
+  if (state.outNow) { outForce = state.outNow; state.free = state.outIn; delete state.outNow; }   // the lab asks for one
+  function outSpot() {                                          // somewhere on the page, away from the cursor and from him
+    var vw = window.innerWidth, vh = window.innerHeight, y0 = Math.max(160, vh * 0.35), best = null, bd = -1;
+    for (var n = 0; n < 6; n++) {
+      var s = [120 + Math.random() * Math.max(0, vw - 240), y0 + Math.random() * Math.max(0, vh - 30 - y0)];
+      var d = Math.min(mouse ? Math.hypot(s[0] - mouse.x, s[1] - mouse.y) : 1e4, Math.hypot(s[0] - state.x, s[1] - state.y));
+      if (d > bd) { best = s; bd = d; }
+      if (d > 220) break;
+    }
+    return best;
+  }
+  function startOuting() {
+    var opts = OUT_KINDS.filter(function (o) { return o[0] !== state.outLast; }), tot = 0, k, pick = opts[opts.length - 1];
+    opts.forEach(function (o) { tot += o[1]; });
+    var r = Math.random() * tot;
+    for (k = 0; k < opts.length; k++) { r -= opts[k][1]; if (r < 0) { pick = opts[k]; break; } }
+    for (k = 0; k < OUT_KINDS.length; k++) if (OUT_KINDS[k][0] === outForce) pick = OUT_KINDS[k];
+    outForce = null;
+    state.outLast = pick[0]; state.free = 0;
+    state.outIn = OUT_MIN + Math.random() * (OUT_MAX - OUT_MIN);
+    var beats = [{ id: 'go' }];
+    if (pick[0] === 'mate') beats.push({ id: 'mate', T: MATE_T }, { id: 'go' });
+    else if (pick[0] === 'wheel') beats.push({ id: 'wheel' }, { id: 'tada', T: TADA_T, say: 'TA-DA!' });
+    else beats.push({ id: 'dance', T: 7.5 }, { id: 'tada', T: TADA_T });
+    if (current === 'podcast') foldStudio();
+    outing = { kind: pick[0], beats: beats, i: 0 };
+    think(pick[2], 3);
+  }
+  function endOuting() { outing = null; still = 0; }
+  function outBegin(b) {
+    b.t = 0;
+    if (b.id === 'go') {                                        // a gentle curve to a spot of his own, not a beeline
+      var to = outSpot(), dx = to[0] - state.x, dy = to[1] - state.y, bend = (Math.random() - 0.5) * 0.6;
+      b.from = [state.x, state.y]; b.to = to; b.s = 0;
+      b.via = [(state.x + to[0]) / 2 - dy * bend, (state.y + to[1]) / 2 + dx * bend];
+      b.len = Math.hypot(dx, dy) * (1 + Math.abs(bend) * 0.5);
+    } else if (b.id === 'wheel') {                              // toward the side with more room
+      var vw = window.innerWidth;
+      b.d = state.x > vw / 2 ? -1 : 1;
+      b.n = clamp(Math.floor((b.d > 0 ? vw - 60 - state.x : state.x - 60) / WHEEL_PX), 1, 3);
+      b.x0 = state.x; b.T = b.n * WHEEL_T;
+    } else if (b.id === 'mate') b.side = state.x < window.innerWidth / 2 ? 1 : -1;   // sits turned into the page
+  }
+  function outTick(dt) {
+    var b = outing.beats[outing.i];
+    if (b.t == null) outBegin(b);
+    if (b.id === 'go') {
+      b.s = b.len < 4 ? 1 : Math.min(1, b.s + OUT_WALK * dt / b.len);
+      var u = b.s, v = 1 - u;
+      var nx = v * v * b.from[0] + 2 * v * u * b.via[0] + u * u * b.to[0], ny = v * v * b.from[1] + 2 * v * u * b.via[1] + u * u * b.to[1];
+      var step = Math.hypot(nx - state.x, ny - state.y);
+      if (Math.abs(nx - state.x) > 0.3) dir = nx > state.x ? 1 : -1;
+      state.x = nx; state.y = ny; walkPhase += step / 9; moving = step > 0.01;
+      if (b.s < 1) return;
+    } else {
+      b.t += dt;
+      if (b.id === 'wheel') { dir = b.d; state.x = b.x0 + b.d * WHEEL_PX * Math.min(b.t / WHEEL_T, b.n); }
+      if (b.id === 'mate' && b.t > 6 && !b.ahh) { b.ahh = true; think('ahh', 2.2); }   // after the first sip
+      if (b.t < b.T) return;
+    }
+    if (++outing.i >= outing.beats.length) endOuting();
+    else outBegin(outing.beats[outing.i]);                      // set up now: this frame already faces and draws it
+  }
+  function outYaw() {                                           // which way he faces, eased like the rest
+    var b = outing.beats[outing.i];
+    return b.id === 'go' ? (moving ? dir * 0.85 : -0.45) : b.id === 'mate' ? b.side * 1.05 : 0;
+  }
+  // the Club-Mate: brown glass, a pale label, a crown cap; centred on the grip, neck up
+  function mateBottle(xf) {
+    box(xf, -1.4, -3.4, -1.4, 1.4, 3.0, 1.4, { all: ['III', 'lll', 'lll', 'lll', 'III', 'zzz'], t: 'I', d: 'z' }, 'mate');
+    box(xf, -0.7, 3.0, -0.7, 0.7, 5.6, 0.7, 'I', 'mate');
+    box(xf, -0.8, 5.6, -0.8, 0.8, 6.3, 0.8, 'K', 'mate');
+  }
+  function crate(g, cyaw) {                                     // a drinks crate, caps showing, grown out of the floor like his chairs
+    if (g <= 0.02) return;
+    var prev = KIND; KIND = 5;
+    var c = child(scaledY(0, 0, g), 0, 0, 0, 0, cyaw, 0);
+    box(c, -6.4, 0, -5.6, 6.4, 6, 5.6, { all: 'p', f: ['pppppppppppp', 'pXXXppppXXXp', 'pppppppppppp', 'pppppppppppp', 'pppppppppppp'], t: ['KIKIKIKI', 'IIIIIIII', 'KIKIKIKI', 'IIIIIIII', 'KIKIKIKI'] }, 'crate');
+    KIND = prev;
+  }
+  function drawOuting() {
+    var b = outing.beats[outing.i], p = pose();
+    if (b.t == null) outBegin(b);
+    if (b.id === 'mate') { drawMate(b, p); return; }
+    if (b.id === 'wheel') { drawWheel(b, p); return; }
+    if (b.id === 'dance') { drawDance(b, p); return; }
+    if (b.id === 'tada') {                                      // arms up, a little hop
+      var k = Math.sin(Math.PI * Math.min(1, b.t / 0.5));
+      p.yaw = yaw; p.y = 2.4 * k; p.face = 'smile';
+      p.aA = [-0.15, 0, -2.6]; p.aB = [-0.15, 0, 2.6];
+    } else if (moving) walkCycle(p, 1);
+    else lookAtCursor(p);
+    shadow(0, 10, 2);
+    hendrik(rootOf(p), p);
+    finish();
+    if (b.say && b.t < TADA_T) txt(b.say, Math.round(OX - b.say.length * 2), 10, OV.peach, 1 - ramp(TADA_T - 0.4, TADA_T, b.t));
+  }
+  // the break: a crate rises, he sits, opens a Club-Mate, sips, swings his feet, looks around, gets up
+  function drawMate(b, p) {
+    var T = b.T, bt = b.t;
+    var g = ease(ramp(0, 0.5, bt)) * (1 - ease(ramp(T - 0.6, T - 0.1, bt)));
+    var sit = ease(ramp(0.5, 1.2, bt)) * (1 - ease(ramp(T - 1.3, T - 0.6, bt)));
+    var hasBottle = bt > 1.3 && bt < T - 1.3;
+    var sc = bt - 3.5, n = Math.floor(sc / 8), c = sc - n * 8;   // a sip every 8 s: up, hold, down
+    var sip = sc > 0 && bt < T - 3 ? ease(ramp(0, 0.5, c)) * (1 - ease(ramp(1.9, 2.4, c))) : 0;
+    // side-on on the crate, legs angled down to the floor, the bottle in the hand nearer to us
+    seat(p, sit);
+    p.lA = [-0.95 * sit, 0, -0.08 * sit]; p.lB = [-0.95 * sit, 0, 0.08 * sit];
+    p.yaw = yaw;
+    if (sit > 0.95) {
+      var sw = Math.sin(bt * 2.1) * 0.12;                        // feet swinging off the crate
+      p.lA[0] += sw; p.lB[0] -= sw;
+      if (bt % 12 < 3 && mouse) lookAtCursor(p);                 // now and then a look at you
+      else { p.head[1] = 0.55 * Math.sin(bt * 0.37); p.gaze = p.head[1] + p.yaw < 0 ? -1 : 1; }
+    }
+    var arm = b.side > 0 ? 'aA' : 'aB', m = b.side > 0 ? -1 : 1;
+    if (hasBottle) {
+      p[arm] = [-0.85 - 1.65 * sip, 0, m * (0.12 - 0.67 * sip)];   // knee → mouth
+      p.head[0] = -0.4 * sip; if (sip > 0.5) { p.head[1] = 0; p.face = 'blink'; }
+    }
+    shadow(0, 12, 2);
+    crate(g, p.yaw);
+    var parts = hendrik(rootOf(p), p);
+    if (hasBottle) {
+      var hand = toWorld(parts[arm], [0, -11.6, 0]);
+      mateBottle(child(WORLD, hand[0], hand[1] + 1.2 * (1 - sip), hand[2], -2.3 * sip, p.yaw, 0));
+    }
+    finish();
+  }
+  // cartwheels: arms up, legs apart, turning round his middle; his head is bigger than his arms are
+  // long, so the middle rises as he goes over (an aerial) and his quiff never dips through the floor
+  function drawWheel(b, p) {
+    var th = 2 * Math.PI * Math.min(b.t / WHEEL_T, b.n);
+    p.yaw = 0; p.face = 'smile';
+    p.aA = [0, 0, -2.75]; p.aB = [0, 0, 2.75]; p.lA = [0, 0, -0.5]; p.lB = [0, 0, 0.5];
+    var spin = child(WORLD, 0, 18 + 2.9 * (1 - Math.cos(th)), 0, 0, 0, -b.d * th);
+    shadow(0, 9, 2);
+    hendrik(child(spin, 0, -18, 0, 0, 0, 0), p);
+    finish();
+  }
+  // a dance: a disco point that swaps hands, hips swaying, a bounce, singing along, notes rising
+  function drawDance(b, p) {
+    var beat = b.t * 2.4 * Math.PI, s = Math.sin(beat), up = Math.sin(beat / 2) > 0;
+    p.yaw = 0.3 * Math.sin(beat / 2); p.rz = 0.09 * s; p.y = Math.abs(s) * 1.4;
+    if (up) { p.aB = [-0.2, 0, 2.6]; p.aA = [0, 0, -0.55]; } else { p.aA = [-0.2, 0, -2.6]; p.aB = [0, 0, 0.55]; }
+    p.lA = [0.28 * s, 0, -0.1]; p.lB = [-0.28 * s, 0, 0.1];
+    p.head[2] = 0.14 * s;
+    p.face = ((b.t * 3) | 0) % 3 ? 'talk' : 'smile';
+    shadow(0, 10, 2);
+    var root = rootOf(p);
+    hendrik(root, p);
+    finish();
+    var hp = project(toWorld(root, [0, 41, 0]));
+    for (var k = 0; k < 3; k++) {
+      var ph = (b.t * 0.6 + k / 3) % 1;
+      glyph(k === 1 ? NOTE2 : NOTE, hp.x - 14 + k * 12 + Math.sin(ph * 6 + k) * 3, hp.y - 3 - ph * 18, k === 1 ? OV.peach : OV.ink, 1 - ph);
+    }
+  }
+
   var DRAW = { walk: drawWalk, coding: drawCoding, podcast: drawPodcast, surf: drawSurf, sax: drawSax, cocktail: drawCocktail, ski: drawSki, kite: drawKite, sleep: drawSleep };
 
   // ---------- Jev: a decision model picks what he does next ----------
@@ -1785,7 +1961,7 @@
     }
     cardTick();
     var was = activityIndex();
-    state.elapsed += dt;
+    if (!outing) state.elapsed += dt;                          // his day waits while he's off on his own
     jevTick(was);
     if (!guestsAsked) {                                       // the guests' file, shortly before the studio opens
       var pi = podIdx();
@@ -1802,12 +1978,18 @@
     }
 
     // follow the cursor (asleep, he stays on his couch; while his bubble is up he holds still so you can
-    // click it; pinned, he stays where he was put)
+    // click it; pinned, he stays where he was put), unless he's off on an outing of his own
     moving = false;
     var inView = keepInView();
+    if (outing && (state.pinned || studioCard || !OUT_ON[act.id])) endOuting();
+    if (!outing && OUT_ON[act.id] && !state.pinned && !bubbleOn && !studioCard && (act.id === 'walk' || still < 0.35)) {
+      state.free += dt;
+      if (state.free >= state.outIn && inView) startOuting();
+    }
     // while the studio is up he stays at the desk as long as the cursor stays over it, so a guest can be clicked
     var studioHold = act.id === 'podcast' && still >= 0.35 && mouse && mouse.x >= boxX && mouse.x < boxX + W * SCALE && mouse.y >= boxY && mouse.y < boxY + H * SCALE;
-    if (mouse && act.speed > 0 && inView && !bubbleOn && !state.pinned && !studioHold) {
+    if (outing) { if (inView && !bubbleOn) outTick(dt); }
+    else if (mouse && act.speed > 0 && inView && !bubbleOn && !state.pinned && !studioHold) {
       var off = act.off || OFFSET_X;
       var tx = mouse.x + off * (mouse.x > window.innerWidth - 160 ? -1 : 1);
       var ty = Math.min(window.innerHeight - 6, mouse.y + OFFSET_Y);
@@ -1823,20 +2005,22 @@
     still = moving ? 0 : still + dt;                           // how long he has been standing still
     // at rest he stands three-quarter on (so his sides show), turned toward the cursor
     var target = 0;
-    if (act.id === 'walk' || act.id === 'coding' || act.id === 'podcast' || act.id === 'sax' || act.id === 'cocktail') {
+    if (outing) target = outYaw();
+    else if (act.id === 'walk' || act.id === 'coding' || act.id === 'podcast' || act.id === 'sax' || act.id === 'cocktail') {
       if (moving) target = dir * 0.85;
       else if (mouse) target = (mouse.x < state.x ? -1 : 1) * clamp(0.45 + Math.abs(mouse.x - state.x) / 400, 0.45, 0.7);
       else target = -0.45;
       if (!moving && act.id === 'sax') target += 0.35;
     }
     yaw += (target - yaw) * (1 - Math.exp(-dt * 7));
+    if (!isFinite(yaw)) yaw = -0.45;                           // never let a bad angle stick
 
     clear();
     KIND = 1;
     if (scrUsed || scrDirty) sbuf.fill(0);
     scrUsed = false;
     tagReq = null; tagAt = null; gLo = gHi = 0; gNow = null;
-    DRAW[act.id](dt);
+    if (outing) drawOuting(dt); else DRAW[act.id](dt);
     if (scrUsed || scrDirty) { sctx.putImageData(simg, 0, 0); scrDirty = scrUsed; }
     if (poof > 0) {                                           // a few squares on the 7px grid, not a sparkle
       poof -= dt;
@@ -1929,7 +2113,8 @@
   canvas.addEventListener('click', function (e) {
     var og = e && overGuest(e.clientX, e.clientY);
     if (og) { window.open('https://www.youtube.com/watch?v=' + og.ep, '_blank', 'noopener'); return; }
-    // asleep → wake up and start the day again; otherwise skip ahead
+    // asleep → wake up and start the day again; otherwise skip ahead (and back from any outing)
+    if (outing) endOuting();
     var idx = activityIndex();
     state.elapsed = ACTIVITIES[idx].id === 'sleep' ? 0 : ACTIVITIES[idx + 1].at;
     save();

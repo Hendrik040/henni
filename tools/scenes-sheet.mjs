@@ -40,11 +40,14 @@ const rows = [];
 // mouse: [x,y] or a function of time returning [x,y]
 function scene(saved, mouse, times) {
   const p = boot(saved), row = [];
-  let tcur = 0;
+  let tcur = 0, last = null;
   for (const tm of times) {
     while (tcur < tm) {
       tcur = Math.min(tm, tcur + 1 / 60);
-      if (mouse) { const m = typeof mouse === 'function' ? mouse(tcur) : mouse; p.move(m[0], m[1]); }
+      if (mouse) {                                               // like a browser: mousemove only when the mouse moves
+        const m = typeof mouse === 'function' ? mouse(tcur) : mouse;
+        if (!last || m[0] !== last[0] || m[1] !== last[1]) { p.move(m[0], m[1]); last = m; }
+      }
       p.until(tcur);
     }
     row.push(p.frame());
@@ -61,6 +64,12 @@ if (which.includes('coding')) scene({ elapsed: 36, x: 600, y: 500 }, park, proce
 if (which.includes('ski')) scene({ elapsed: 276, x: 600, y: 500 }, swing, [0.6, 1.2, 1.5, 1.8, 2.3, 4.6, 5.0, 5.3, 8.4, 9.2, 12.1, 12.4, 15.7, 16.0]);
 if (which.includes('walk')) scene({ elapsed: 10, x: 600, y: 500 }, swing, process.env.CT ? process.env.CT.split(',').map(Number) : [1.0, 1.5, 3.0]);
 if (which.includes('surf')) scene({ elapsed: 126, x: 600, y: 500 }, swing, [1.0, 1.6, 2.2]);
+// outings, with Math.random pinned so each is the one asked for (it also fixes where he walks to)
+const CT = process.env.CT ? process.env.CT.split(',').map(Number) : null;
+const outing = (r, times) => { Math.random = () => r; scene({ elapsed: 10, x: 600, y: 500, free: 44.9, outIn: 45 }, park, CT || times); };
+if (which.includes('mate')) outing(0.1, [2.0, 5.35, 5.95, 7.05, 9.0, 9.55, 10.05, 12.05, 18.05, 54.05, 54.65]);
+if (which.includes('wheel')) outing(0.6, [0.8, 1.5, 1.61, 1.72, 1.83, 1.93, 2.04, 2.15, 4.2, 4.6, 5.2]);
+if (which.includes('dance')) outing(0.9, [5.3, 5.5, 5.7, 6.0, 6.4, 7.0, 8.5, 12.8, 13.4]);
 const fw = Math.max(...rows.flat().map(f => f.w)), fh = Math.max(...rows.flat().map(f => f.h));
 const cols = Math.max(...rows.map(r => r.length)), cw = fw * Z, ch = fh * Z;
 const SW = cols * (cw + GAP) + GAP, SH = rows.length * (ch + GAP) + GAP;
