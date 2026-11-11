@@ -1,0 +1,14 @@
+{
+  "name": "henni",
+  "private": true,
+  "description": "A voxel pet for a website: a tiny software-rendered me who follows your cursor, lives through his day and hosts podcast guests, with TypeSafe's Jev deciding what he does next.",
+  "license": "MIT",
+  "repository": "github:Hendrik040/henni",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "lab": "python3 -m http.server 8765",
+    "jev": "node jev/jev-proxy.mjs",
+    "build": "python3 tools/colorways.py && node tools/build-pet.mjs && node tools/build-guests.mjs",
+    "test": "node --test jev/jev-proxy.test.mjs && node tools/guests-test.mjs pet.js && node tools/jev-test.mjs pet.js"
+  }
+}

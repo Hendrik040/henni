@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Pet lab</title>
+<style>
+  /* The lab: a page with a chosen pet variant swapped in. Inside krackedtools.dev (at /pet-lab/)
+     that page is the real homepage; on its own (npm run lab) it is demo.html. */
+  :root {
+    --bg: #131118; --panel: rgba(19, 17, 24, 0.92); --ink: #ece9f1; --muted: #9a96a6;
+    --rule: #3a3540; --accent: #ff570a;
+  }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); }
+  body { font: 12px/1.4 ui-monospace, "SFMono-Regular", Menlo, monospace; }
+  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+  .lab {
+    position: fixed; top: 12px; right: 12px; z-index: 10; width: 248px;
+    background: var(--panel); border: 1px solid var(--rule); padding: 12px;
+    backdrop-filter: blur(6px);
+  }
+  .lab h1 { margin: 0 0 8px; font-size: 12px; font-weight: 600; letter-spacing: .04em; }
+  .lab p { margin: 0 0 10px; color: var(--muted); }
+  .lab .group { margin-bottom: 10px; }
+  .lab .label { color: var(--muted); margin-bottom: 4px; }
+  .lab button {
+    display: block; width: 100%; text-align: left; margin: 0 0 4px; padding: 6px 8px;
+    background: transparent; color: var(--ink); border: 1px solid var(--rule);
+    font: inherit; cursor: pointer;
+  }
+  .lab button:hover { border-color: var(--muted); }
+  .lab button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .lab button[aria-pressed="true"] { border-color: var(--accent); color: #fff; }
+  .lab .acts { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .lab .acts button { margin: 0; }
+  .lab small { display: block; color: var(--muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+<iframe id="site" title="Page with the selected pet variant"></iframe>
+<aside class="lab" aria-label="Pet lab controls">
+  <h1>Pet lab</h1>
+  <p>A page with a pet variant swapped in. Move the mouse over the page; click him to skip ahead.</p>
+  <div class="group">
+    <div class="label">Variant</div>
+    <div id="variants"></div>
+  </div>
+  <div class="group">
+    <div class="label">Jump to</div>
+    <div class="acts" id="acts"></div>
+  </div>
+</aside>
+<script>
+  // Variants live in variants/<id>.js; "current" is pet.js, the build that ships.
+  var VARIANTS = [
+    { id: 'current', name: 'Shipped (pet.js)', note: 'the Ink build of Big Hoodie' },
+    { id: 'big-hoodie', name: 'Big Hoodie', note: 'the bigger one: 1.5x voxels, ~114 px' },
+    { id: 'crossy-chibi', name: 'Crossy Chibi', note: 'pocket-size voxel toy, beach casual' },
+    { id: 'ink-and-gold', name: 'Ink & Gold', note: 'sticker in the site’s own ink' }
+    ,{ id: 'bh-ink', name: '1.5x · Ink', note: 'light hoodie like the site’s white type' },
+    { id: 'bh-midnight', name: '1.5x · Midnight', note: 'deep mauve hoodie (your black hoodie)' },
+    { id: 'bh-signal', name: '1.5x · Signal', note: 'hoodie in the site’s orange accent' },
+    { id: 'bh-ringer', name: '1.5x · Ringer crew', note: 'charcoal crewneck, white trim, stone chinos' }
+    /* VARIANTS:END */
+  ];
+  var ACTS = [['arrival', -1], ['walk', 0], ['coding', 35], ['podcast', 80], ['surf', 125], ['sax', 170], ['cocktail', 215], ['ski', 275], ['kite', 320], ['sleep', 365]];
+  var HERE = location.href.replace(/[?#].*$/, '').replace(/[^\/]*$/, '');      // this lab's folder
+  var IN_SITE = /\/pet-lab\/$/.test(HERE.replace(location.origin, ''));      // mounted in krackedtools.dev
+  var PAGE = IN_SITE ? '/index.html' : HERE + 'demo.html';
+  var frame = document.getElementById('site');
+  var params = new URLSearchParams(location.search);
+  var chosen = params.get('v') || 'current';
+
+  // Unload the old page first (the pet saves its state on pagehide), then set the time.
+  function jump(at) {
+    frame.onload = function () {
+      frame.onload = null;
+      // 'arrival' replays the door entrance 3 s from now (the real site waits 30 s)
+      var st = at < 0 ? { elapsed: 0, wait: 27, arrived: false } : { elapsed: at + 1, arrived: true };
+      st.x = Math.max(160, innerWidth * 0.4); st.y = innerHeight * 0.8;
+      try { sessionStorage.setItem('kt-pet', JSON.stringify(st)); } catch (e) { /* ignore */ }
+      load();
+    };
+    frame.srcdoc = '<!doctype html><title>.</title><body style="background:#131118">';
+  }
+  function load() {
+    fetch(PAGE, { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (html) {
+      var src = HERE + (chosen === 'current' ? 'pet.js' : 'variants/' + chosen + '.js') + '?' + Date.now();
+      html = html.replace(/<script defer src="[^"]*pet\.js[^"]*"><\/script>\s*/, '');
+      html = IN_SITE ? html.replace(/(href|src)="assets\//g, '$1="/assets/').replace('<head>', '<head><base href="/">')
+                     : html.replace('<head>', '<head><base href="' + HERE + '">');
+      frame.srcdoc = html.replace('</body>', '<script defer src="' + src + '"><\/script></body>');
+    });
+  }
+  function render() {
+    var vEl = document.getElementById('variants'), aEl = document.getElementById('acts');
+    vEl.innerHTML = ''; aEl.innerHTML = '';
+    VARIANTS.forEach(function (v) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(v.id === chosen));
+      b.innerHTML = v.name + (v.note ? '<small>' + v.note + '</small>' : '');
+      b.addEventListener('click', function () {
+        chosen = v.id;
+        history.replaceState(null, '', '?v=' + encodeURIComponent(v.id));
+        render(); load();
+      });
+      vEl.appendChild(b);
+    });
+    ACTS.forEach(function (a) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = a[0];
+      b.addEventListener('click', function () { jump(a[1]); });
+      aEl.appendChild(b);
+    });
+  }
+  render(); load();
+</script>
+</body>
+</html>

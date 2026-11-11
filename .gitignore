@@ -1,0 +1,12 @@
+node_modules/
+.env
+.DS_Store
+
+# The lab's copy of the guest bundle; npm run build writes it next to the variants
+variants/pet-guests.js
+
+# Local working files: guest research frames, review sheets, spikes, design notes
+guests/research/
+guests/review/
+spikes/
+specs/

@@ -1,0 +1,340 @@
+{
+  "note": "The Merge guests for Henni's studio. Newest first. \"live\" guests have a look in guests and are Jev options.",
+  "guests": [
+    {
+      "id": "allie-laabs",
+      "name": "Allie Laabs",
+      "company": "TypeSafe",
+      "live": true,
+      "episodes": [
+        "j8RO-IOKtvM"
+      ],
+      "pages": [
+        "/posts/the-merge-typesafe-jev-smart-if-statements.html"
+      ],
+      "about": "Allie Laabs of TypeSafe: Jev and decision models, smart if-statements, routing and classification inside code instead of prompting an LLM"
+    },
+    {
+      "id": "francesco-bonacci",
+      "name": "Francesco Bonacci",
+      "company": "Cua",
+      "live": true,
+      "episodes": [
+        "cIwv_ET0g9M"
+      ],
+      "pages": [
+        "/posts/the-merge-cua-can-your-agent-finish-the-job.html"
+      ],
+      "about": "Francesco Bonacci of Cua: computer-use agents, agents that operate real desktops and apps, testing whether an agent can finish the job"
+    },
+    {
+      "id": "kent-c-dodds",
+      "name": "Kent C. Dodds",
+      "company": "Epic Web",
+      "live": true,
+      "episodes": [
+        "9hoqdnYBKUQ",
+        "gyccj5rXiGk"
+      ],
+      "pages": [
+        "/posts/the-last-software-engineer-knows-what-to-build.html"
+      ],
+      "about": "Kent C. Dodds: the future of the software engineer, knowing what to build, the skills engineers need in the AI era, teaching developers"
+    },
+    {
+      "id": "simon-farshid",
+      "name": "Simon Farshid",
+      "company": "assistant-ui",
+      "live": true,
+      "episodes": [
+        "o41cg-3cM2Q"
+      ],
+      "pages": [
+        "/posts/the-merge-why-building-ai-chat-is-harder-than-it-looks.html"
+      ],
+      "about": "Simon Farshid of assistant-ui: building chat interfaces for AI agents, streaming UI, React components for AI apps"
+    },
+    {
+      "id": "james-arthur",
+      "name": "James Arthur",
+      "company": "ElectricSQL",
+      "live": true,
+      "episodes": [
+        "LBfHnVn4tus"
+      ],
+      "pages": [],
+      "about": "James Arthur of ElectricSQL: sync engines, local-first apps, syncing data instead of fetching it, app architecture"
+    },
+    {
+      "id": "michael-grinich",
+      "name": "Michael Grinich",
+      "company": "WorkOS",
+      "live": true,
+      "episodes": [
+        "uB8F7Ol7QGo"
+      ],
+      "pages": [],
+      "about": "Michael Grinich of WorkOS: product market fit, building developer products and startups, enterprise features"
+    },
+    {
+      "id": "jesse-vincent",
+      "name": "Jesse Vincent",
+      "company": "Superpowers",
+      "live": true,
+      "episodes": [
+        "aB2dVA-Y7CQ"
+      ],
+      "pages": [],
+      "about": "Jesse Vincent, creator of Superpowers: managing coding agents, skills and workflows for agents, fixing AI slop with process"
+    },
+    {
+      "id": "chris-alexiuk",
+      "name": "Chris Alexiuk",
+      "company": "NVIDIA",
+      "live": true,
+      "episodes": [
+        "8UWvF2y78Ms"
+      ],
+      "pages": [],
+      "about": "Chris Alexiuk of NVIDIA: Nemotron models, fast open models for agent harnesses, model speed and modes"
+    },
+    {
+      "id": "max-stoiber",
+      "name": "Max Stoiber",
+      "company": "OpenAI Codex",
+      "live": true,
+      "episodes": [
+        "mE1FQxGrXbk"
+      ],
+      "pages": [],
+      "about": "Max Stoiber of OpenAI Codex: developer experience, taste in software engineering, coding agents changing how software is made"
+    },
+    {
+      "id": "tanner-linsley",
+      "name": "Tanner Linsley",
+      "company": "TanStack",
+      "live": true,
+      "episodes": [
+        "wh954IZ1IAE"
+      ],
+      "pages": [],
+      "about": "Tanner Linsley of TanStack: open-source libraries, building without venture capital, React and TypeScript tooling"
+    },
+    {
+      "id": "kunal-kushwaha",
+      "name": "Kunal Kushwaha",
+      "company": "Cast AI",
+      "live": true,
+      "episodes": [
+        "_14E-EwcXtE"
+      ],
+      "pages": [],
+      "about": "Kunal Kushwaha: open-source AI models versus proprietary ones, cloud native, developer communities"
+    },
+    {
+      "id": "yash-martian",
+      "name": "Yash",
+      "company": "Martian",
+      "live": true,
+      "episodes": [
+        "XmV6lGQfFa4"
+      ],
+      "pages": [],
+      "about": "Yash of Martian: lesser-known open-source AI models, model routing, choosing models for a task"
+    },
+    {
+      "id": "ivan-burazin",
+      "name": "Ivan Burazin",
+      "company": "Daytona",
+      "live": true,
+      "episodes": [
+        "zRAGWJN_TwM"
+      ],
+      "pages": [],
+      "about": "Ivan Burazin of Daytona: open source as a business, founders, sandboxes and infrastructure for AI-generated code"
+    },
+    {
+      "id": "bill-easton",
+      "name": "Bill Easton",
+      "company": "FastMCP",
+      "live": true,
+      "episodes": [
+        "lBjB-f_I-bs"
+      ],
+      "pages": [],
+      "about": "Bill Easton of FastMCP: the Model Context Protocol, tools for agents, maintaining a popular open-source project"
+    },
+    {
+      "id": "abhi-aiyer",
+      "name": "Abhi Aiyer",
+      "company": "Mastra",
+      "live": true,
+      "episodes": [
+        "6AbmRwKoF1U"
+      ],
+      "pages": [],
+      "about": "Abhi Aiyer of Mastra: building AI agents in TypeScript, agent frameworks, a YC startup journey"
+    },
+    {
+      "id": "herrington-darkholme",
+      "name": "Herrington Darkholme",
+      "company": "ast-grep",
+      "live": true,
+      "episodes": [
+        "GX0iUT9_GNk"
+      ],
+      "pages": [],
+      "about": "Herrington Darkholme, creator of ast-grep: structural code search and rewriting, syntax trees instead of regex, code tooling"
+    }
+  ],
+  "episodes": {
+    "j8RO-IOKtvM": {
+      "title": "Jev vs LLMs: When to Use TypeSafe's Jev AI Model",
+      "tag": "Jev vs LLMs",
+      "guest": "allie-laabs"
+    },
+    "cIwv_ET0g9M": {
+      "title": "Your Tests Pass. Can Your AI Agent Finish the Job? | Francesco Bonacci, Cua",
+      "tag": "Can your agent finish the job?",
+      "guest": "francesco-bonacci"
+    },
+    "IsRRQ7wxzuY": {
+      "title": "Anthropic's Opus 5.5 Is Here - Is The Higher Reasoning Effort Worth It?",
+      "tag": null,
+      "guest": null
+    },
+    "R7ffAdg0BGk": {
+      "title": "GPT-6 Astra vs Fable 5.1: What CodeRabbit’s Code Review Tests Reveal",
+      "tag": null,
+      "guest": null
+    },
+    "9hoqdnYBKUQ": {
+      "title": "The Last Software Engineer | Kent C. Dodds",
+      "tag": "The Last Software Engineer",
+      "guest": "kent-c-dodds"
+    },
+    "o41cg-3cM2Q": {
+      "title": "AI Chat Looks Easy. Building It for AI Agents Is Hard",
+      "tag": "AI Chat Looks Easy",
+      "guest": "simon-farshid"
+    },
+    "gyccj5rXiGk": {
+      "title": "The Last Skill Software Engineers Need to Survive the AI Era",
+      "tag": "The Last Skill",
+      "guest": "kent-c-dodds"
+    },
+    "LBfHnVn4tus": {
+      "title": "Why Fetch When You Can Sync? (The Future of App Architecture)",
+      "tag": "Why Fetch When You Can Sync?",
+      "guest": "james-arthur"
+    },
+    "7XE846SJ84E": {
+      "title": "Claude Sonnet 5 Review: Precision vs Recall Trade-Off",
+      "tag": null,
+      "guest": null
+    },
+    "uB8F7Ol7QGo": {
+      "title": "How to Engineer Real Product Market Fit",
+      "tag": "Real Product Market Fit",
+      "guest": "michael-grinich"
+    },
+    "WJGm9ckzZWs": {
+      "title": "Anthropic's \"Mythos\" Fable 5 vs Claude Opus 4.8: Genius Coding or Waste of Tokens?",
+      "tag": null,
+      "guest": null
+    },
+    "aB2dVA-Y7CQ": {
+      "title": "Fixing \"AI Slop\": How To Manage Agents Like MIT Interns w/ Jesse Vincent, creator of Superpowers",
+      "tag": "Fixing AI Slop",
+      "guest": "jesse-vincent"
+    },
+    "8UWvF2y78Ms": {
+      "title": "5X Faster Coding? How NVIDIA's new Nemotron-3 Ultra unlocks a new Mode for your Agent Harness",
+      "tag": "Nemotron-3 Ultra",
+      "guest": "chris-alexiuk"
+    },
+    "LzgPzQud0zA": {
+      "title": "Opus 4.8 vs 4.7 Benchmarks: Higher Recall and Reduced Noise Explained",
+      "tag": null,
+      "guest": null
+    },
+    "mE1FQxGrXbk": {
+      "title": "DX is Dead: Max Stoiber from OpenAI Codex on Why Software Engineering is Shifting to \"Taste\"",
+      "tag": "DX is Dead",
+      "guest": "max-stoiber"
+    },
+    "wh954IZ1IAE": {
+      "title": "Why Tanner Linsley Won’t Take VC Money for TanStack",
+      "tag": "No VC Money for TanStack",
+      "guest": "tanner-linsley"
+    },
+    "_14E-EwcXtE": {
+      "title": "Google worries about OS models: Kunal Kushwaha on Why Open Source is Killing Proprietary AI",
+      "tag": "Open Source vs Proprietary AI",
+      "guest": "kunal-kushwaha"
+    },
+    "XmV6lGQfFa4": {
+      "title": "The Hidden Open Source AI Models You're Sleeping On",
+      "tag": "Hidden Open Source Models",
+      "guest": "yash-martian"
+    },
+    "LRorapr8Oyc": {
+      "title": "What Claude Opus 4.7 means for AI code review",
+      "tag": null,
+      "guest": null
+    },
+    "zRAGWJN_TwM": {
+      "title": "Most Founders Don't Understand Open Source | Ivan Burazin (CEO, Daytona)",
+      "tag": "Founders and Open Source",
+      "guest": "ivan-burazin"
+    },
+    "lBjB-f_I-bs": {
+      "title": "Future of MCP: Bill Easton on FastMCP's 1M+ Daily Downloads, Maintaining Open Source & AI Agents",
+      "tag": "Future of MCP",
+      "guest": "bill-easton"
+    },
+    "6AbmRwKoF1U": {
+      "title": "TypeScript BEATS Python when building AI Agents (Mastra's YC Journey)",
+      "tag": "TypeScript Beats Python",
+      "guest": "abhi-aiyer"
+    },
+    "GX0iUT9_GNk": {
+      "title": "STOP USING REGEX FOR CODE! Meet the Creator of AST-Grep, the Tool Revolutionizing Structural Search.",
+      "tag": "Stop Using Regex for Code",
+      "guest": "herrington-darkholme"
+    },
+    "5vvKx-wCIIk": {
+      "title": "GOOGLE JUST WON THE AI RACE? | How Gemini 3.1 Pro & Deep Think CRUSH every Benchmark",
+      "tag": null,
+      "guest": null
+    },
+    "zWSBF2onDC8": {
+      "title": "GPT-5.3-Codex vs. Claude Opus 4.6 Comparison: Performance, Benchmarks & Agentic Coding Workflows",
+      "tag": null,
+      "guest": null
+    },
+    "wkyfxhLvoyo": {
+      "title": "After 2025: What’s Next for AI Coding in 2026 - The Merge (by CodeRabbit) - Episode1",
+      "tag": null,
+      "guest": null
+    }
+  },
+  "pages": {
+    "/": "Hendrik Krack — Developer Advocate",
+    "/writing.html": "Writing",
+    "/podcasts.html": "Podcasts — The New Engineering",
+    "/posts/building-an-effective-code-review-harness.html": "Building an effective code-review harness",
+    "/posts/claude-opus-5-5-for-code-review.html": "Claude Opus 5.5 for code review: More catches, different misses",
+    "/posts/claude-sonnet-5-5-for-code-review.html": "Claude Sonnet 5.5 for code review: More catches than Sonnet 5, in half the time",
+    "/posts/coderabbit-cli-0-7-1-performance-and-reliability.html": "CodeRabbit CLI 0.7.1: improved performance and reliability",
+    "/posts/loop-engineering-when-is-it-worth-the-hassle.html": "Loop Engineering: When is it worth the hassle?",
+    "/posts/opus-5-for-code-review.html": "Opus 5 for code review: Cleaner actionable comments, noisier overall",
+    "/posts/software-factory-review-gate.html": "A software factory needs a review gate it can trust",
+    "/posts/the-last-software-engineer-knows-what-to-build.html": "What would the last software engineer still need to do?",
+    "/posts/the-merge-cua-can-your-agent-finish-the-job.html": "The Merge: Your tests pass. Can your agent finish the job?",
+    "/posts/the-merge-typesafe-jev-smart-if-statements.html": "Intelligent If-Statements: Jev vs. LLMs | CodeRabbit & TypeSafe AI",
+    "/posts/the-merge-why-building-ai-chat-is-harder-than-it-looks.html": "The Merge: Why Building AI Chat Is Harder Than It Looks",
+    "/posts/what-ai-code-reviewers-catch-and-what-they-still-miss.html": "What AI code reviewers catch — and what they still miss",
+    "/posts/why-building-your-own-benchmark-will-get-you-ahead.html": "Why building your own benchmark will get you ahead"
+  }
+}
