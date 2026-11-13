@@ -6,7 +6,7 @@ One dependency-free file, `pet.js`, plain ES5, drawn by its own little software 
 
 ## What he does
 
-- **Arrives** after 30 seconds on the site (counted across pages, per tab): a door grows out of the floor, he steps out, it sinks away.
+- **Arrives** after 10 seconds on the site (counted across pages, per tab): a door grows out of the floor, he steps out, it sinks away.
 - **Lives through his day.** The longer the visit, the further it goes: walking → coding → podcast → surfing → saxophone → cocktails → skiing → kitesurfing → asleep on the couch. Click him to skip ahead, or to wake him.
 - **Sits down when your cursor rests:** coding at two big screens while four terminals tell one story; recording The Merge podcast; mixing a martini, an old fashioned and a cuba libre at the bar. On skis he hits kickers and rails.
 - **Goes his own way.** Now and then he stops following and walks off on a path of his own: he pulls up a drinks crate and hangs out with a Club-Mate for most of a minute, cartwheels across the page, or dances. Then he comes back to your cursor, and his day carries on where it left off.
