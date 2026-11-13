@@ -299,6 +299,7 @@
       watch: 'Watch {name} on The Merge ↗', mate: 'Club-Mate break', wheel: 'watch this', dance: 'this is my song', ahh: 'ahh',
       hi: 'oh, I’m running on Jev', hiLang: '', end: 'you made it to the end!', skim: 'skimming, huh?', idle: 'still there?',
       running: 'running on Jev', says: 'Jev says: {act} · {p}% sure',
+      flip: 'backflip!', roam: 'just looking around', back: 'there you are!',
       act: { walk: 'a walk', coding: 'code', podcast: 'podcast', surf: 'surf', sax: 'sax', cocktail: 'cocktails', ski: 'ski', kite: 'kite', sleep: 'nap' }
     },
     de: {
@@ -306,6 +307,7 @@
       watch: '{name} in The Merge ansehen ↗', mate: 'Club-Mate-Pause', wheel: 'guck mal', dance: 'das ist mein Song', ahh: 'ahh',
       hi: 'oh, ich laufe auf Jev', hiLang: 'ich spreche Deutsch, weil dein Browser es tut', end: 'du hast es bis zum Ende geschafft!', skim: 'nur am Überfliegen, was?', idle: 'noch da?',
       running: 'läuft auf Jev', says: 'Jev sagt: {act} · zu {p}{nb}% sicher',
+      flip: 'Rückwärtssalto!', roam: 'ich schau mich mal um', back: 'da bist du ja!',
       act: { walk: 'Spaziergang', coding: 'Code', podcast: 'Podcast', surf: 'Surfen', sax: 'Saxofon', cocktail: 'Cocktails', ski: 'Skifahren', kite: 'Kiten', sleep: 'Nickerchen' }
     },
     es: {
@@ -313,6 +315,7 @@
       watch: 'Ver a {name} en The Merge ↗', mate: 'pausa de Club-Mate', wheel: 'mira esto', dance: 'esta es mi canción', ahh: 'ahh',
       hi: 'oh, funciono con Jev', hiLang: 'te hablo en español porque tu navegador también', end: '¡llegaste al final!', skim: 'leyendo por encima, ¿eh?', idle: '¿sigues ahí?',
       running: 'funciono con Jev', says: 'Jev dice: {act} · {p}{nb}% seguro',
+      flip: '¡mortal hacia atrás!', roam: 'echando un vistazo', back: '¡ahí estás!',
       act: { walk: 'un paseo', coding: 'código', podcast: 'pódcast', surf: 'surf', sax: 'saxo', cocktail: 'cócteles', ski: 'esquí', kite: 'kite', sleep: 'siesta' }
     },
     fr: {
@@ -320,6 +323,7 @@
       watch: 'Voir {name} dans The Merge ↗', mate: 'pause Club-Mate', wheel: 'regarde ça', dance: 'c’est ma chanson', ahh: 'ahh',
       hi: 'oh, je tourne sur Jev', hiLang: 'je parle français, comme ton navigateur', end: 'tu as tout lu{nb}!', skim: 'tu survoles, hein{nb}?', idle: 'toujours là{nb}?',
       running: 'je tourne sur Jev', says: 'Jev dit{nb}: {act} · sûr à {p}{nb}%',
+      flip: 'salto arrière{nb}!', roam: 'je fais un petit tour', back: 'te voilà{nb}!',
       act: { walk: 'une balade', coding: 'du code', podcast: 'podcast', surf: 'surf', sax: 'saxo', cocktail: 'cocktails', ski: 'ski', kite: 'kite', sleep: 'sieste' }
     },
     pt: {
@@ -327,6 +331,7 @@
       watch: 'Ver {name} no The Merge ↗', mate: 'pausa para Club-Mate', wheel: 'olha só', dance: 'essa é a minha música', ahh: 'ahh',
       hi: 'oh, eu rodo no Jev', hiLang: 'falo português porque seu navegador também fala', end: 'você chegou ao fim!', skim: 'só passando o olho, né?', idle: 'ainda está aí?',
       running: 'rodando no Jev', says: 'Jev diz: {act} · {p}% de certeza',
+      flip: 'mortal para trás!', roam: 'dando uma volta', back: 'aí está você!',
       act: { walk: 'uma caminhada', coding: 'código', podcast: 'podcast', surf: 'surfe', sax: 'sax', cocktail: 'coquetéis', ski: 'esqui', kite: 'kite', sleep: 'soneca' }
     },
     ja: {
@@ -334,6 +339,7 @@
       watch: 'The Merge で {name} を見る ↗', mate: 'クラブマテ休憩', wheel: '見てて', dance: 'この曲好きなんだ', ahh: 'ふぅ',
       hi: 'あ、ぼくは Jev で動いてるよ', hiLang: 'ブラウザが日本語だから日本語で話すね', end: '最後まで読んだね！', skim: '流し読み中？', idle: 'まだいる？',
       running: 'Jev で動作中', says: 'Jev の判断：{act} · 確信度 {p}%',
+      flip: 'バク宙！', roam: 'ちょっとお散歩', back: 'いたいた！',
       act: { walk: '散歩', coding: 'コーディング', podcast: 'ポッドキャスト', surf: 'サーフィン', sax: 'サックス', cocktail: 'カクテル', ski: 'スキー', kite: 'カイト', sleep: 'お昼寝' }
     },
     zh: {
@@ -341,6 +347,7 @@
       watch: '在 The Merge 观看 {name} ↗', mate: 'Club-Mate 小憩', wheel: '看我的', dance: '这是我的歌', ahh: '啊～',
       hi: '哦，我是靠 Jev 运行的', hiLang: '你的浏览器说中文，所以我也说中文', end: '你读到最后了！', skim: '在快速浏览吗？', idle: '还在吗？',
       running: '由 Jev 驱动', says: 'Jev 说：{act} · {p}% 把握',
+      flip: '后空翻！', roam: '随便逛逛', back: '找到你啦！',
       act: { walk: '散步', coding: '写代码', podcast: '播客', surf: '冲浪', sax: '萨克斯', cocktail: '鸡尾酒', ski: '滑雪', kite: '风筝冲浪', sleep: '小睡' }
     }
   };
@@ -1690,51 +1697,119 @@
     }
   }
 
-  // ---------- outings: now and then he stops following and goes his own way ----------
-  // After OUT_FIRST seconds on foot (then every OUT_MIN–OUT_MAX, counted across pages) he leaves the
-  // cursor on a path of his own: a Club-Mate break on a drinks crate for most of a minute, cartwheels
-  // across the page, or a dance. His day waits meanwhile. A click (which also skips ahead), a pin or
-  // the podcasts page's studio ends it; the hover bubble holds it. Never on a board, asleep, or out of
-  // a sit-down scene he has settled into.
-  var OUT_FIRST = 45, OUT_MIN = 60, OUT_MAX = 120, OUT_WALK = 95, MATE_T = 50, WHEEL_T = 0.85, WHEEL_PX = 105, TADA_T = 1.5;
+  // ---------- on his own: he mostly goes his own way, and visits the cursor now and then ----------
+  // OUT_FIRST seconds after he arrives he leaves the cursor, and from then on he is mostly off on his
+  // own: roaming the page with pauses (setting up his desk, sax or bar there when his day is at that
+  // point), a Club-Mate break on a crate, cartwheels, a backflip, or a dance. When one ends, nextMove()
+  // picks what comes next, weighted by Jev's latest read of the visitor (gone idle: a show; reading
+  // closely: out of the way; skimming: closer by). Now and then the pick is a visit: he follows the
+  // cursor for OUT_MIN–OUT_MAX seconds, then is off again. Wherever he stops, he looks for a spot clear
+  // of text first (clearSpot). A click, a pin or the podcasts page's studio brings him back to the
+  // cursor; the hover bubble holds him. Never on a board or asleep.
+  var OUT_FIRST = 8, OUT_MIN = 10, OUT_MAX = 25, OUT_WALK = 95, MATE_T = 25, WHEEL_T = 0.85, WHEEL_PX = 105, TADA_T = 1.5, FLIP_T = 1.25;
   var OUT_ON = { walk: 1, coding: 1, podcast: 1, sax: 1, cocktail: 1 };
-  var OUT_KINDS = [['mate', 2, say('mate')], ['wheel', 1, say('wheel')], ['dance', 1, say('dance')]];
-  var outing = null, outForce = null;
-  if (typeof state.free !== 'number') state.free = 0;           // seconds on foot since the last outing
-  if (typeof state.outIn !== 'number') state.outIn = OUT_FIRST;  // ... when the next one is due
-  if (state.outNow) { outForce = state.outNow; state.free = state.outIn; delete state.outNow; }   // the lab asks for one
-  function outSpot() {                                          // somewhere on the page, away from the cursor and from him
-    var vw = window.innerWidth, vh = window.innerHeight, y0 = Math.max(160, vh * 0.35), best = null, bd = -1;
-    for (var n = 0; n < 6; n++) {
-      var s = [120 + Math.random() * Math.max(0, vw - 240), y0 + Math.random() * Math.max(0, vh - 30 - y0)];
-      var d = Math.min(mouse ? Math.hypot(s[0] - mouse.x, s[1] - mouse.y) : 1e4, Math.hypot(s[0] - state.x, s[1] - state.y));
-      if (d > bd) { best = s; bd = d; }
-      if (d > 220) break;
+  var SCENE = { coding: 1, sax: 1, cocktail: 1 };                // sit-down scenes he can set up at a spot of his own
+  var BOARD = { surf: 1, ski: 1, kite: 1 };                      // on a board he rides his own way instead (no tricks, no stops)
+  var RIDE = 230;                                               // px/s on a board
+  var OUT_KINDS = [['ride', 0, ''], ['roam', 3, say('roam')], ['mate', 1, say('mate')], ['wheel', 1, say('wheel')], ['flip', 1, say('flip')], ['dance', 1, say('dance')]];
+  // how much room he takes up (px, bottom-centred on his feet): on his own, and with a scene set up
+  var FOOT = { him: [110, 140], scene: [340, 250] };
+  var TEXTY = 'p,h1,h2,h3,h4,h5,h6,li,a,button,summary,label,pre,code,img,svg,figure,table,blockquote,input,textarea,select,video,iframe,nav,.row';
+  function covered(x, y, foot) {                                // share of the box over text, links or pictures
+    if (typeof document.elementFromPoint !== 'function') return 0;
+    var w = foot[0], h = foot[1], hit = 0, n = 0;
+    for (var i = 0; i < 5; i++) for (var j = 0; j < 4; j++) {
+      var px = x - w / 2 + w * (i + 0.5) / 5, py = y - h + h * (j + 0.5) / 4;
+      n++;
+      if (px < 0 || py < 0 || px >= window.innerWidth || py >= window.innerHeight) continue;
+      var el = document.elementFromPoint(px, py);
+      if (el && el.closest && el.closest(TEXTY)) hit++;
+    }
+    return hit / n;
+  }
+  function inBounds(sx, sy, foot) {
+    var vw = window.innerWidth, vh = window.innerHeight, m = Math.min(foot[0] / 2 + 8, vw / 2 - 30);
+    return [clamp(sx, m, vw - m), clamp(sy, Math.max(160, Math.min(foot[1] + 10, vh * 0.6)), vh - 8)];
+  }
+  // the clear spot nearest to (x, y): the point itself, then rings around it, then the page's side margins
+  function clearSpot(x, y, foot) {
+    var vw = window.innerWidth, c = [[0, 0]], best = null, bs = 1e9;
+    [0.6, 1.1, 1.7].forEach(function (k) { c.push([k * foot[0], 0], [-k * foot[0], 0], [k * foot[0], -110], [-k * foot[0], -110], [k * foot[0], 110], [-k * foot[0], 110]); });
+    c.push([0, -150], [0, 150], [foot[0] / 2 + 10 - x, 0], [vw - foot[0] / 2 - 10 - x, 0]);
+    for (var i = 0; i < c.length; i++) {
+      var s = inBounds(x + c[i][0], y + c[i][1], foot), sc = covered(s[0], s[1], foot) * 1000 + Math.hypot(s[0] - x, s[1] - y) / 10;
+      if (sc < bs) { bs = sc; best = s; }
+      if (sc < 1) break;
     }
     return best;
   }
-  function startOuting() {
-    var opts = OUT_KINDS.filter(function (o) { return o[0] !== state.outLast; }), tot = 0, k, pick = opts[opts.length - 1];
-    opts.forEach(function (o) { tot += o[1]; });
+  var outing = null, outForce = null, restAt = null;
+  if (typeof state.free !== 'number') state.free = 0;           // seconds on foot since the last outing
+  if (typeof state.outIn !== 'number' || state.outIn > OUT_MAX) state.outIn = OUT_FIRST;  // ... when the next one is due
+  if (state.outNow) { outForce = state.outNow; state.free = state.outIn; delete state.outNow; }   // the lab asks for one
+  function outSpot(foot) {                                      // somewhere on the page, clear of text, away from the cursor and from him
+    var vw = window.innerWidth, vh = window.innerHeight, y0 = Math.max(160, vh * 0.35), best = null, bs = 1e9;
+    for (var n = 0; n < 10; n++) {
+      var s = inBounds(120 + Math.random() * Math.max(0, vw - 240), y0 + Math.random() * Math.max(0, vh - 30 - y0), foot);
+      var d = Math.min(mouse ? Math.hypot(s[0] - mouse.x, s[1] - mouse.y) : 1e4, Math.hypot(s[0] - state.x, s[1] - state.y));
+      var sc = covered(s[0], s[1], foot) * 1000 - Math.min(d, 260);
+      if (sc < bs) { best = s; bs = sc; }
+    }
+    return best;
+  }
+  // what he does next, from Jev's latest read of the visitor (code decides; Jev only judges the visitor)
+  function nextMove(noVisit) {
+    if (BOARD[current]) return !noVisit && Math.random() < 0.3 ? 'visit' : 'ride';
+    var w = { visit: noVisit ? 0 : 2, roam: 3, mate: 1, wheel: 1, flip: 1, dance: 1 }, k;
+    var j = jev && t - jevAt <= JEV_FRESH ? jev : null;
+    if (j) {
+      if (j.idle > 0.7) { w.dance += 2; w.flip += 1; w.wheel += 1; w.visit *= 0.3; }                 // gone quiet: put on a show
+      else if (j.skimming > 0.7) { w.visit *= 1.8; w.flip += 0.5; w.wheel += 0.5; }                  // moving fast: stay closer
+      else if (j.engagement != null && j.engagement >= 2) {                                         // reading closely: keep out of the way
+        w.roam += 2; w.mate += 1; w.visit *= 0.6; w.flip *= 0.5; w.wheel *= 0.5; w.dance *= 0.5;
+      }
+    }
+    if (state.outLast && state.outLast !== 'roam' && w[state.outLast]) w[state.outLast] *= 0.15;     // rarely the same trick twice running
+    var tot = 0;
+    for (k in w) tot += w[k];
     var r = Math.random() * tot;
-    for (k = 0; k < opts.length; k++) { r -= opts[k][1]; if (r < 0) { pick = opts[k]; break; } }
-    for (k = 0; k < OUT_KINDS.length; k++) if (OUT_KINDS[k][0] === outForce) pick = OUT_KINDS[k];
+    for (k in w) { r -= w[k]; if (r < 0) return k; }
+    return 'roam';
+  }
+  function startOuting(kind) {
+    var pick = null, k;
+    if (outForce) kind = outForce;
     outForce = null;
+    if (!kind) kind = nextMove(true);
+    for (k = 0; k < OUT_KINDS.length; k++) if (OUT_KINDS[k][0] === kind) pick = OUT_KINDS[k];
+    if (!pick) pick = OUT_KINDS[0];
     state.outLast = pick[0]; state.free = 0;
-    state.outIn = OUT_MIN + Math.random() * (OUT_MAX - OUT_MIN);
     var beats = [{ id: 'go' }];
-    if (pick[0] === 'mate') beats.push({ id: 'mate', T: MATE_T }, { id: 'go' });
+    if (pick[0] === 'mate') beats.push({ id: 'mate', T: MATE_T });
     else if (pick[0] === 'wheel') beats.push({ id: 'wheel' }, { id: 'tada', T: TADA_T, say: 'TA-DA!' });
-    else beats.push({ id: 'dance', T: 7.5 }, { id: 'tada', T: TADA_T });
+    else if (pick[0] === 'flip') beats.push({ id: 'flip', T: FLIP_T }, { id: 'tada', T: TADA_T, say: 'TA-DA!' });
+    else if (pick[0] === 'dance') beats.push({ id: 'dance', T: 7.5 }, { id: 'tada', T: TADA_T });
+    else if (pick[0] === 'ride') beats.push({ id: 'go' }, { id: 'go' });
+    else { beats.push({ id: 'look' }, { id: 'go' }, { id: 'look' }); if (Math.random() < 0.4) beats.push({ id: 'go' }, { id: 'look' }); }
     if (current === 'podcast') foldStudio();
     outing = { kind: pick[0], beats: beats, i: 0 };
-    think(pick[2], 3);
+    if (pick[2] && (pick[0] !== 'roam' || Math.random() < 0.35)) think(pick[2], 3);
   }
   function endOuting() { outing = null; still = 0; }
+  // the next thing once one is over: another of his own, or a visit to the cursor
+  function afterOuting() {
+    var m = nextMove(false);
+    endOuting();
+    if (m === 'visit' || !(OUT_ON[current] || BOARD[current]) || state.pinned) {
+      state.free = 0; state.outIn = OUT_MIN + Math.random() * (OUT_MAX - OUT_MIN);
+      if (mouse && Math.random() < 0.5) think(say('back'), 2.5);
+    } else startOuting(m);
+  }
   function outBegin(b) {
     b.t = 0;
     if (b.id === 'go') {                                        // a gentle curve to a spot of his own, not a beeline
-      var to = outSpot(), dx = to[0] - state.x, dy = to[1] - state.y, bend = (Math.random() - 0.5) * 0.6;
+      var nb = outing.beats[outing.i + 1], scene = nb && nb.id === 'look' && SCENE[current];
+      var to = outSpot(scene ? FOOT.scene : FOOT.him), dx = to[0] - state.x, dy = to[1] - state.y, bend = (Math.random() - 0.5) * 0.6;
       b.from = [state.x, state.y]; b.to = to; b.s = 0;
       b.via = [(state.x + to[0]) / 2 - dy * bend, (state.y + to[1]) / 2 + dx * bend];
       b.len = Math.hypot(dx, dy) * (1 + Math.abs(bend) * 0.5);
@@ -1742,14 +1817,23 @@
       var vw = window.innerWidth;
       b.d = state.x > vw / 2 ? -1 : 1;
       b.n = clamp(Math.floor((b.d > 0 ? vw - 60 - state.x : state.x - 60) / WHEEL_PX), 1, 3);
+      for (var wd = 0, best = 1e9; wd < 2; wd++) for (var wn = 1; wn <= 3; wn++) {   // land where there is no text, if he can
+        var d1 = wd ? -b.d : b.d, lx = state.x + d1 * wn * WHEEL_PX;
+        if (lx < 60 || lx > vw - 60) continue;
+        var sc = covered(lx, state.y, FOOT.him) * 10 - wn * 0.01 + wd * 0.001;
+        if (sc < best) { best = sc; b.dd = d1; b.nn = wn; }
+      }
+      if (b.dd) { b.d = b.dd; b.n = b.nn; }
       b.x0 = state.x; b.T = b.n * WHEEL_T;
     } else if (b.id === 'mate') b.side = state.x < window.innerWidth / 2 ? 1 : -1;   // sits turned into the page
+    else if (b.id === 'flip') { b.face = state.x > window.innerWidth / 2 ? -1 : 1; b.x0 = state.x; }   // faces into the page, lands a little back
+    else if (b.id === 'look') b.T = SCENE[current] ? 7 + Math.random() * 5 : 1.8 + Math.random() * 2.2;  // a pause; long enough to set up a scene
   }
   function outTick(dt) {
     var b = outing.beats[outing.i];
     if (b.t == null) outBegin(b);
     if (b.id === 'go') {
-      b.s = b.len < 4 ? 1 : Math.min(1, b.s + OUT_WALK * dt / b.len);
+      b.s = b.len < 4 ? 1 : Math.min(1, b.s + (outing.kind === 'ride' ? RIDE : OUT_WALK) * dt / b.len);
       var u = b.s, v = 1 - u;
       var nx = v * v * b.from[0] + 2 * v * u * b.via[0] + u * u * b.to[0], ny = v * v * b.from[1] + 2 * v * u * b.via[1] + u * u * b.to[1];
       var step = Math.hypot(nx - state.x, ny - state.y);
@@ -1759,15 +1843,16 @@
     } else {
       b.t += dt;
       if (b.id === 'wheel') { dir = b.d; state.x = b.x0 + b.d * WHEEL_PX * Math.min(b.t / WHEEL_T, b.n); }
+      if (b.id === 'flip') { dir = b.face; state.x = b.x0 - b.face * 24 * ease(clamp((b.t / FLIP_T - 0.2) / 0.62, 0, 1)); }
       if (b.id === 'mate' && b.t > 6 && !b.ahh) { b.ahh = true; think(say('ahh'), 2.2); }   // after the first sip
       if (b.t < b.T) return;
     }
-    if (++outing.i >= outing.beats.length) endOuting();
+    if (++outing.i >= outing.beats.length) afterOuting();
     else outBegin(outing.beats[outing.i]);                      // set up now: this frame already faces and draws it
   }
   function outYaw() {                                           // which way he faces, eased like the rest
     var b = outing.beats[outing.i];
-    return b.id === 'go' ? (moving ? dir * 0.85 : -0.45) : b.id === 'mate' ? b.side * 1.05 : 0;
+    return b.id === 'go' ? (moving ? dir * 0.85 : -0.45) : b.id === 'mate' ? b.side * 1.05 : b.id === 'flip' ? b.face * 0.85 : b.id === 'look' ? yaw : 0;
   }
   // the Club-Mate: brown glass, a pale label, a crown cap; centred on the grip, neck up
   function mateBottle(xf) {
@@ -1782,12 +1867,19 @@
     box(c, -6.4, 0, -5.6, 6.4, 6, 5.6, { all: 'p', f: ['pppppppppppp', 'pXXXppppXXXp', 'pppppppppppp', 'pppppppppppp', 'pppppppppppp'], t: ['KIKIKIKI', 'IIIIIIII', 'KIKIKIKI', 'IIIIIIII', 'KIKIKIKI'] }, 'crate');
     KIND = prev;
   }
-  function drawOuting() {
+  function drawOuting(dt) {
     var b = outing.beats[outing.i], p = pose();
     if (b.t == null) outBegin(b);
+    if (outing.kind === 'ride') { DRAW[current](dt); return; }   // surfing, skiing or kiting along a path of his own
     if (b.id === 'mate') { drawMate(b, p); return; }
     if (b.id === 'wheel') { drawWheel(b, p); return; }
     if (b.id === 'dance') { drawDance(b, p); return; }
+    if (b.id === 'flip') { drawFlip(b, p); return; }
+    if (b.id === 'look' && SCENE[current]) { DRAW[current](0); return; }   // sets up his desk, sax or bar right here
+    if (b.id === 'look') {                                      // a pause: looking around the page
+      p.yaw = yaw; p.head[1] = 0.6 * Math.sin(b.t * 1.4); p.gaze = p.head[1] + p.yaw < 0 ? -1 : 1;
+      shadow(0, 10, 2); hendrik(rootOf(p), p); finish(); return;
+    }
     if (b.id === 'tada') {                                      // arms up, a little hop
       var k = Math.sin(Math.PI * Math.min(1, b.t / 0.5));
       p.yaw = yaw; p.y = 2.4 * k; p.face = 'smile';
@@ -1840,6 +1932,19 @@
     var spin = child(WORLD, 0, 18 + 2.9 * (1 - Math.cos(th)), 0, 0, 0, -b.d * th);
     shadow(0, 9, 2);
     hendrik(child(spin, 0, -18, 0, 0, 0, 0), p);
+    finish();
+  }
+  // a backflip: side-on, a crouch, up and over backwards with knees tucked, a little back from where he took off
+  function drawFlip(b, p) {
+    var u = clamp(b.t / FLIP_T, 0, 1), air = clamp((u - 0.2) / 0.62, 0, 1);
+    var crouch = u < 0.2 ? ease(u / 0.2) : u > 0.82 ? 1 - ease(clamp((u - 0.82) / 0.18, 0, 1)) : 0;
+    var tuck = Math.sin(Math.PI * air), th = 2 * Math.PI * ease(air), h = 15 * Math.sin(Math.PI * air);
+    p.yaw = b.face * Math.PI / 2; p.face = 'smile';
+    p.lA = [-1.6 * tuck - 0.7 * crouch, 0, -0.05]; p.lB = [-1.6 * tuck - 0.7 * crouch, 0, 0.05];
+    p.aA = [-1.2 * tuck + 0.7 * crouch, 0, -0.2]; p.aB = [-1.2 * tuck + 0.7 * crouch, 0, 0.2];
+    var spin = child(WORLD, 0, 18 + h - 2.2 * crouch, 0, 0, 0, b.face * th);
+    shadow(0, 10 - 4 * tuck, 2);
+    hendrik(child(spin, 0, -18, 0, 0, p.yaw, 0), p);             // side-on inside the spin, so he goes over backwards, not sideways
     finish();
   }
   // a dance: a disco point that swaps hands, hips swaying, a bounce, singing along, notes rising
@@ -1972,7 +2077,6 @@
     if (d.finished > 0.8 && !jevSaid.fin) { jevSaid.fin = 1; think(say('end'), 4); return; }
     if (d.skimming > 0.8 && !jevSaid.skim) { jevSaid.skim = 1; think(say('skim'), 4); return; }
     if (d.idle > 0.8 && !jevSaid.idle) { jevSaid.idle = 1; think(say('idle'), 4); return; }
-    if (jevCount % 4 === 0) think(d.mock ? say('running') + tag : say('running') + ' · ' + d.ms + ' ms', 4);
   }
   function askJev() {
     jevBusy = true;
@@ -2001,7 +2105,6 @@
     var pick = jevPick();
     if (!pick) return;
     for (var k = 0; k < ACTIVITIES.length; k++) if (ACTIVITIES[k].id === pick.id) state.elapsed = ACTIVITIES[k].at;
-    if (!(jev.mock && ON_SITE)) think(say('says', { act: LABEL[pick.id], p: Math.round(pick.p * 100) }), 5);
   }
 
   // ---------- loop ----------
@@ -2038,7 +2141,7 @@
     }
     cardTick();
     var was = activityIndex();
-    if (!outing) state.elapsed += dt;                          // his day waits while he's off on his own
+    state.elapsed += dt;                                       // his day goes on, wherever he is
     jevTick(was);
     if (!guestsAsked) {                                       // the guests' file, shortly before the studio opens
       var pi = podIdx();
@@ -2058,8 +2161,9 @@
     // click it; pinned, he stays where he was put), unless he's off on an outing of his own
     moving = false;
     var inView = keepInView();
-    if (outing && (state.pinned || studioCard || !OUT_ON[act.id])) endOuting();
-    if (!outing && OUT_ON[act.id] && !state.pinned && !bubbleOn && !studioCard && (act.id === 'walk' || still < 0.35)) {
+    if (outing && (state.pinned || studioCard)) endOuting();
+    else if (outing && (BOARD[act.id] ? outing.kind !== 'ride' : !OUT_ON[act.id] || outing.kind === 'ride')) afterOuting();   // the day moved on under him
+    if (!outing && (OUT_ON[act.id] || BOARD[act.id]) && !state.pinned && !bubbleOn && !studioCard && (act.id !== 'podcast' || still < 0.35)) {   // never out of a running studio
       state.free += dt;
       if (state.free >= state.outIn && inView) startOuting();
     }
@@ -2070,6 +2174,11 @@
       var off = act.off || OFFSET_X;
       var tx = mouse.x + off * (mouse.x > window.innerWidth - 160 ? -1 : 1);
       var ty = Math.min(window.innerHeight - 6, mouse.y + OFFSET_Y);
+      if (SCENE[act.id]) {                                      // the cursor rests: set the scene up nearby, clear of text
+        if (!restAt || Math.hypot(mouse.x - restAt.mx, mouse.y - restAt.my) > 40) restAt = { mx: mouse.x, my: mouse.y, t: 0, to: null };
+        restAt.t += dt;
+        if (restAt.t > 0.5) { if (!restAt.to) restAt.to = clearSpot(tx, ty, FOOT.scene); tx = restAt.to[0]; ty = restAt.to[1]; }
+      }
       var dx = tx - state.x, dy = ty - state.y, d = Math.hypot(dx, dy);
       if (d > 6) {
         var stepLen = Math.min(d, Math.min(300, act.speed * (d > 300 ? 1.4 : 1)) * dt);
