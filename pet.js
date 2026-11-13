@@ -13,7 +13,7 @@
    is raised one step. Every fill stays at 3:1 or better on #131118.
 
    Behaviour:
-   - He only arrives after 30 s on the site (counted across pages, per
+   - He only arrives after 10 s on the site (counted across pages, per
      tab): a door grows out of the floor, he steps out, it sinks away.
    - The longer the visit, the further his day goes: walking → coding →
      podcast → surfing → saxophone → cocktails → skiing → kitesurfing →
@@ -593,7 +593,7 @@
   // ---------- state ----------
   // He only shows up after ARRIVE_AFTER seconds on the site (counted across pages,
   // per tab), stepping out of a door; 'elapsed' is his time since arriving.
-  var ARRIVE_AFTER = 30;
+  var ARRIVE_AFTER = 10;
   var state = { elapsed: 0, x: 0, y: 0, wait: 0, arrived: false };
   try {
     var saved = JSON.parse(sessionStorage.getItem(STORE) || 'null');
@@ -1946,7 +1946,7 @@
   function frame(now) {
     if (state.home) { canvas.style.visibility = 'hidden'; scr.style.visibility = 'hidden'; bubble.style.display = 'none'; pinBtn.style.display = 'none'; thought.style.display = 'none'; return; }   // gone home: the loop stops
     requestAnimationFrame(frame);
-    var raw = Math.min((now - last) / 1000, 1), dt = Math.min(raw, 0.05);   // raw: real time, for the 30 s wait
+    var raw = Math.min((now - last) / 1000, 1), dt = Math.min(raw, 0.05);   // raw: real time, for the 10 s wait
     last = now;
     if (!(dt > 0)) return;
     t += dt; tp = Math.floor(t * 10) / 10;

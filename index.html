@@ -81,7 +81,7 @@
   function jump(at, out) {
     frame.onload = function () {
       frame.onload = null;
-      // 'arrival' replays the door entrance 3 s from now (the real site waits 30 s)
+      // 'arrival' replays the door entrance 3 s from now (the real site waits 10 s)
       var st = at < 0 ? { elapsed: 0, wait: 27, arrived: false } : { elapsed: at + 1, arrived: true };
       if (out) st.outNow = out;
       st.x = Math.max(160, innerWidth * 0.4); st.y = innerHeight * 0.8;
