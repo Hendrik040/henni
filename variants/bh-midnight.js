@@ -1749,8 +1749,9 @@
   if (state.outNow) { outForce = state.outNow; state.free = state.outIn; delete state.outNow; }   // the lab asks for one
   function outSpot(foot) {                                      // somewhere on the page, clear of text, away from the cursor and from him
     var vw = window.innerWidth, vh = window.innerHeight, y0 = Math.max(160, vh * 0.35), best = null, bs = 1e9;
-    for (var n = 0; n < 10; n++) {
-      var s = inBounds(120 + Math.random() * Math.max(0, vw - 240), y0 + Math.random() * Math.max(0, vh - 30 - y0), foot);
+    for (var n = 0; n < 14; n++) {                              // the last four try the page's side margins
+      var sx = n < 10 ? 120 + Math.random() * Math.max(0, vw - 240) : n % 2 ? 0 : vw;
+      var s = inBounds(sx, y0 + Math.random() * Math.max(0, vh - 30 - y0), foot);
       var d = Math.min(mouse ? Math.hypot(s[0] - mouse.x, s[1] - mouse.y) : 1e4, Math.hypot(s[0] - state.x, s[1] - state.y));
       var sc = covered(s[0], s[1], foot) * 1000 - Math.min(d, 260);
       if (sc < bs) { best = s; bs = sc; }
@@ -2174,10 +2175,15 @@
       var off = act.off || OFFSET_X;
       var tx = mouse.x + off * (mouse.x > window.innerWidth - 160 ? -1 : 1);
       var ty = Math.min(window.innerHeight - 6, mouse.y + OFFSET_Y);
-      if (SCENE[act.id]) {                                      // the cursor rests: set the scene up nearby, clear of text
-        if (!restAt || Math.hypot(mouse.x - restAt.mx, mouse.y - restAt.my) > 40) restAt = { mx: mouse.x, my: mouse.y, t: 0, to: null };
-        restAt.t += dt;
-        if (restAt.t > 0.5) { if (!restAt.to) restAt.to = clearSpot(tx, ty, FOOT.scene); tx = restAt.to[0]; ty = restAt.to[1]; }
+      // the cursor rests: he settles next to it but off the text (with a scene, further if need be)
+      if (!restAt || Math.hypot(mouse.x - restAt.mx, mouse.y - restAt.my) > 40) restAt = { mx: mouse.x, my: mouse.y, t: 0, to: null };
+      restAt.t += dt;
+      if (restAt.t > 0.5) {
+        if (!restAt.to) {
+          var foot = SCENE[act.id] ? FOOT.scene : FOOT.him, cs = clearSpot(tx, ty, foot);
+          restAt.to = Math.hypot(cs[0] - tx, cs[1] - ty) <= (SCENE[act.id] ? 420 : 220) ? cs : [tx, ty];
+        }
+        tx = restAt.to[0]; ty = restAt.to[1];
       }
       var dx = tx - state.x, dy = ty - state.y, d = Math.hypot(dx, dy);
       if (d > 6) {

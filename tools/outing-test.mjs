@@ -179,7 +179,7 @@ function stops(api, secs, mouse, min = 1.2) {
 }
 // 9. coding: with the cursor resting on the text, he sets up his desk next to it, clear of the text
 {
-  const h = boot({ saved: { elapsed: 36, free: 0, outIn: 100 }, rand: MIX, text: TEXT });
+  const h = boot({ saved: { elapsed: 36, free: 0, outIn: 24 }, rand: MIX, text: TEXT });
   h.step(10, [500, 500]);
   const p = h.pos();
   check('coding: sets up his desk clear of the text', over(p, 340, 250) < 0.2 && dist(p, [538, 534]) < 500, p);
