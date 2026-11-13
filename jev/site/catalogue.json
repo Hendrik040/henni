@@ -1,0 +1,630 @@
+{
+ "model": "jev-1.14.0",
+ "topics": [
+  "code_review",
+  "model_evals",
+  "agents",
+  "open_source",
+  "decision_models",
+  "education",
+  "community",
+  "background"
+ ],
+ "assets": [
+  {
+   "id": "work:coderabbit",
+   "kind": "work",
+   "title": "CodeRabbit",
+   "topics": {
+    "code_review": 0.96,
+    "model_evals": 0.06,
+    "agents": 0.89,
+    "open_source": 0.32,
+    "decision_models": 0.03,
+    "education": 0.03,
+    "community": 0.03,
+    "background": 0.81
+   }
+  },
+  {
+   "id": "project:n-aible",
+   "kind": "project",
+   "title": "n-aible",
+   "topics": {
+    "code_review": 0.02,
+    "model_evals": 0.02,
+    "agents": 0.02,
+    "open_source": 0.02,
+    "decision_models": 0.03,
+    "education": 0.98,
+    "community": 0.02,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "project:henni",
+   "kind": "project",
+   "title": "Henni",
+   "topics": {
+    "code_review": 0.02,
+    "model_evals": 0.02,
+    "agents": 0.03,
+    "open_source": 0.04,
+    "decision_models": 0.11,
+    "education": 0.02,
+    "community": 0.03,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "project:fundamentals-of-ai-code-review",
+   "kind": "project",
+   "title": "Fundamentals of AI Code Review",
+   "topics": {
+    "code_review": 0.96,
+    "model_evals": 0.03,
+    "agents": 0.13,
+    "open_source": 0.68,
+    "decision_models": 0.02,
+    "education": 0.07,
+    "community": 0.03,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "project:code-review-agent",
+   "kind": "project",
+   "title": "code-review-agent",
+   "topics": {
+    "code_review": 0.97,
+    "model_evals": 0.15,
+    "agents": 0.53,
+    "open_source": 0.7,
+    "decision_models": 0.02,
+    "education": 0.04,
+    "community": 0.02,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "event:nar-nights-growth-in-the-usa",
+   "kind": "event",
+   "title": "NAR Nights: Growth in the USA",
+   "topics": {
+    "code_review": 0.13,
+    "model_evals": 0.05,
+    "agents": 0.38,
+    "open_source": 0.21,
+    "decision_models": 0.05,
+    "education": 0.2,
+    "community": 0.28,
+    "background": 0.05
+   }
+  },
+  {
+   "id": "event:how-software-gets-built-in-2026",
+   "kind": "event",
+   "title": "How Software Gets Built in 2026",
+   "topics": {
+    "code_review": 0.14,
+    "model_evals": 0.05,
+    "agents": 0.72,
+    "open_source": 0.11,
+    "decision_models": 0.03,
+    "education": 0.03,
+    "community": 0.77,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "event:pre-universe-rooftop-happy-hour",
+   "kind": "event",
+   "title": "Pre-Universe Rooftop Happy Hour",
+   "topics": {
+    "code_review": 0.21,
+    "model_evals": 0.02,
+    "agents": 0.24,
+    "open_source": 0.6,
+    "decision_models": 0.02,
+    "education": 0.03,
+    "community": 0.89,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "event:thunderplains-2026",
+   "kind": "event",
+   "title": "ThunderPlains 2026",
+   "topics": {
+    "code_review": 0.96,
+    "model_evals": 0.05,
+    "agents": 0.5,
+    "open_source": 0.38,
+    "decision_models": 0.03,
+    "education": 0.05,
+    "community": 0.76,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "event:nar-nights-living-in-beta",
+   "kind": "event",
+   "title": "NAR Nights: Living in Beta",
+   "topics": {
+    "code_review": 0.05,
+    "model_evals": 0.04,
+    "agents": 0.11,
+    "open_source": 0.07,
+    "decision_models": 0.08,
+    "education": 0.05,
+    "community": 0.32,
+    "background": 0.04
+   }
+  },
+  {
+   "id": "event:waves-breakfast-with-coderabbit",
+   "kind": "event",
+   "title": "Waves & Breakfast with CodeRabbit",
+   "topics": {
+    "code_review": 0.17,
+    "model_evals": 0.02,
+    "agents": 0.19,
+    "open_source": 0.26,
+    "decision_models": 0.02,
+    "education": 0.02,
+    "community": 0.51,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "event:october-tech-rooftop-mixer",
+   "kind": "event",
+   "title": "October Tech Rooftop Mixer",
+   "topics": {
+    "code_review": 0.02,
+    "model_evals": 0.02,
+    "agents": 0.05,
+    "open_source": 0.05,
+    "decision_models": 0.02,
+    "education": 0.03,
+    "community": 0.32,
+    "background": 0.04
+   }
+  },
+  {
+   "id": "event:intuit-ai-platform-engineering-developer-meetup",
+   "kind": "event",
+   "title": "Intuit AI & Platform Engineering Developer Meetup",
+   "topics": {
+    "code_review": 0.29,
+    "model_evals": 0.07,
+    "agents": 0.49,
+    "open_source": 0.14,
+    "decision_models": 0.12,
+    "education": 0.04,
+    "community": 0.97,
+    "background": 0.04
+   }
+  },
+  {
+   "id": "event:factory-reset-hot-takes-on-the-agentic-sdlc",
+   "kind": "event",
+   "title": "Factory Reset: Hot Takes on the Agentic SDLC",
+   "topics": {
+    "code_review": 0.97,
+    "model_evals": 0.09,
+    "agents": 0.88,
+    "open_source": 0.38,
+    "decision_models": 0.06,
+    "education": 0.02,
+    "community": 0.73,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "event:rabbits-on-the-run",
+   "kind": "event",
+   "title": "Rabbits on the Run",
+   "topics": {
+    "code_review": 0.2,
+    "model_evals": 0.04,
+    "agents": 0.27,
+    "open_source": 0.24,
+    "decision_models": 0.02,
+    "education": 0.03,
+    "community": 0.56,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "event:fix-my-agent-make-your-agent-production-ready",
+   "kind": "event",
+   "title": "Fix My Agent: Make Your Agent Production-Ready",
+   "topics": {
+    "code_review": 0.23,
+    "model_evals": 0.05,
+    "agents": 0.67,
+    "open_source": 0.33,
+    "decision_models": 0.04,
+    "education": 0.05,
+    "community": 0.81,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "event:jev-hackathon-with-the-ai-collective",
+   "kind": "event",
+   "title": "Jev Hackathon with The AI Collective",
+   "topics": {
+    "code_review": 0.65,
+    "model_evals": 0.15,
+    "agents": 0.53,
+    "open_source": 0.59,
+    "decision_models": 0.58,
+    "education": 0.09,
+    "community": 0.97,
+    "background": 0.05
+   }
+  },
+  {
+   "id": "event:durable-ai-with-temporal-coderabbit",
+   "kind": "event",
+   "title": "Durable AI with Temporal & CodeRabbit",
+   "topics": {
+    "code_review": 0.4,
+    "model_evals": 0.07,
+    "agents": 0.48,
+    "open_source": 0.42,
+    "decision_models": 0.07,
+    "education": 0.04,
+    "community": 0.79,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "event:ai-demos-wearedevelopers-happy-hour",
+   "kind": "event",
+   "title": "AI Demos & WeAreDevelopers Happy Hour",
+   "topics": {
+    "code_review": 0.8,
+    "model_evals": 0.06,
+    "agents": 0.49,
+    "open_source": 0.64,
+    "decision_models": 0.03,
+    "education": 0.05,
+    "community": 0.92,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "event:build-fridays-sf-with-ai-beavers",
+   "kind": "event",
+   "title": "Build Fridays SF with AI Beavers",
+   "topics": {
+    "code_review": 0.57,
+    "model_evals": 0.06,
+    "agents": 0.64,
+    "open_source": 0.71,
+    "decision_models": 0.03,
+    "education": 0.07,
+    "community": 0.94,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "event:dev-tools-padel",
+   "kind": "event",
+   "title": "dev_tools.padel()",
+   "topics": {
+    "code_review": 0.17,
+    "model_evals": 0.02,
+    "agents": 0.26,
+    "open_source": 0.57,
+    "decision_models": 0.03,
+    "education": 0.02,
+    "community": 0.68,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "event:daytona-ai-builders-with-workos-coder",
+   "kind": "event",
+   "title": "Daytona AI Builders with WorkOS & Coder",
+   "topics": {
+    "code_review": 0.9,
+    "model_evals": 0.04,
+    "agents": 0.69,
+    "open_source": 0.4,
+    "decision_models": 0.03,
+    "education": 0.04,
+    "community": 0.86,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "event:ai-at-work-when-faster-quietly-becomes-sloppier",
+   "kind": "event",
+   "title": "AI at Work: When “Faster” Quietly Becomes “Sloppier”",
+   "topics": {
+    "code_review": 0.18,
+    "model_evals": 0.04,
+    "agents": 0.13,
+    "open_source": 0.04,
+    "decision_models": 0.03,
+    "education": 0.03,
+    "community": 0.18,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "event:daytona-hacksprint-at-sentry",
+   "kind": "event",
+   "title": "Daytona HackSprint at Sentry",
+   "topics": {
+    "code_review": 0.95,
+    "model_evals": 0.14,
+    "agents": 0.51,
+    "open_source": 0.32,
+    "decision_models": 0.04,
+    "education": 0.05,
+    "community": 0.94,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "post:the-merge-what-if-your-if-statements-could-think",
+   "kind": "post",
+   "title": "The Merge: What if your ‘if-statements’ could think?",
+   "topics": {
+    "code_review": 0.36,
+    "model_evals": 0.06,
+    "agents": 0.6,
+    "open_source": 0.12,
+    "decision_models": 0.79,
+    "education": 0.04,
+    "community": 0.02,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "post:claude-sonnet-5-5-for-code-review-more-catches-than-sonnet-5",
+   "kind": "post",
+   "title": "Claude Sonnet 5.5 for code review: More catches than Sonnet 5, in half the time",
+   "topics": {
+    "code_review": 0.99,
+    "model_evals": 0.98,
+    "agents": 0.25,
+    "open_source": 0.08,
+    "decision_models": 0.02,
+    "education": 0.02,
+    "community": 0.02,
+    "background": 0.01
+   }
+  },
+  {
+   "id": "post:the-merge-your-tests-pass-can-your-agent-finish-the-job",
+   "kind": "post",
+   "title": "The Merge: Your tests pass. Can your agent finish the job?",
+   "topics": {
+    "code_review": 0.32,
+    "model_evals": 0.06,
+    "agents": 0.61,
+    "open_source": 0.09,
+    "decision_models": 0.03,
+    "education": 0.03,
+    "community": 0.02,
+    "background": 0.01
+   }
+  },
+  {
+   "id": "post:claude-opus-5-5-for-code-review-more-catches-different-misse",
+   "kind": "post",
+   "title": "Claude Opus 5.5 for code review: More catches, different misses",
+   "topics": {
+    "code_review": 0.99,
+    "model_evals": 0.89,
+    "agents": 0.45,
+    "open_source": 0.21,
+    "decision_models": 0.02,
+    "education": 0.02,
+    "community": 0.02,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "post:a-software-factory-needs-a-review-gate-it-can-trust",
+   "kind": "post",
+   "title": "A software factory needs a review gate it can trust",
+   "topics": {
+    "code_review": 0.69,
+    "model_evals": 0.03,
+    "agents": 0.95,
+    "open_source": 0.12,
+    "decision_models": 0.18,
+    "education": 0.02,
+    "community": 0.02,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "post:what-would-the-last-software-engineer-still-need-to-do",
+   "kind": "post",
+   "title": "What would the last software engineer still need to do?",
+   "topics": {
+    "code_review": 0.09,
+    "model_evals": 0.02,
+    "agents": 0.67,
+    "open_source": 0.06,
+    "decision_models": 0.02,
+    "education": 0.04,
+    "community": 0.02,
+    "background": 0.01
+   }
+  },
+  {
+   "id": "post:the-merge-why-building-ai-chat-is-harder-than-it-looks",
+   "kind": "post",
+   "title": "The Merge: Why Building AI Chat Is Harder Than It Looks",
+   "topics": {
+    "code_review": 0.18,
+    "model_evals": 0.04,
+    "agents": 0.3,
+    "open_source": 0.18,
+    "decision_models": 0.02,
+    "education": 0.03,
+    "community": 0.02,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "post:coderabbit-cli-0-7-1-improved-performance-and-reliability",
+   "kind": "post",
+   "title": "CodeRabbit CLI 0.7.1: improved performance and reliability",
+   "topics": {
+    "code_review": 0.92,
+    "model_evals": 0.02,
+    "agents": 0.41,
+    "open_source": 0.65,
+    "decision_models": 0.01,
+    "education": 0.02,
+    "community": 0.02,
+    "background": 0.01
+   }
+  },
+  {
+   "id": "post:opus-5-for-code-review-cleaner-actionable-comments-noisier-o",
+   "kind": "post",
+   "title": "Opus 5 for code review: Cleaner actionable comments, noisier overall",
+   "topics": {
+    "code_review": 0.98,
+    "model_evals": 0.72,
+    "agents": 0.53,
+    "open_source": 0.3,
+    "decision_models": 0.02,
+    "education": 0.02,
+    "community": 0.02,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "post:building-an-effective-code-review-harness",
+   "kind": "post",
+   "title": "Building an effective code-review harness",
+   "topics": {
+    "code_review": 0.81,
+    "model_evals": 0.04,
+    "agents": 0.53,
+    "open_source": 0.31,
+    "decision_models": 0.03,
+    "education": 0.03,
+    "community": 0.02,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "post:loop-engineering-when-is-it-worth-the-hassle",
+   "kind": "post",
+   "title": "Loop Engineering: When is it worth the hassle?",
+   "topics": {
+    "code_review": 0.05,
+    "model_evals": 0.04,
+    "agents": 0.13,
+    "open_source": 0.33,
+    "decision_models": 0.09,
+    "education": 0.03,
+    "community": 0.02,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "post:what-ai-code-reviewers-catch-and-what-they-still-miss",
+   "kind": "post",
+   "title": "What AI code reviewers catch — and what they still miss",
+   "topics": {
+    "code_review": 0.99,
+    "model_evals": 0.07,
+    "agents": 0.19,
+    "open_source": 0.2,
+    "decision_models": 0.03,
+    "education": 0.02,
+    "community": 0.02,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "post:why-building-your-own-benchmark-will-get-you-ahead",
+   "kind": "post",
+   "title": "Why building your own benchmark will get you ahead",
+   "topics": {
+    "code_review": 0.04,
+    "model_evals": 0.8,
+    "agents": 0.19,
+    "open_source": 0.1,
+    "decision_models": 0.03,
+    "education": 0.03,
+    "community": 0.02,
+    "background": 0.01
+   }
+  },
+  {
+   "id": "episode:jev-vs-llms-when-to-use-typesafe-s-jev-ai-model",
+   "kind": "episode",
+   "title": "Jev vs LLMs: When to Use TypeSafe's Jev AI Model",
+   "topics": {
+    "code_review": 0.44,
+    "model_evals": 0.58,
+    "agents": 0.52,
+    "open_source": 0.45,
+    "decision_models": 0.81,
+    "education": 0.13,
+    "community": 0.05,
+    "background": 0.05
+   }
+  },
+  {
+   "id": "episode:your-tests-pass-can-your-ai-agent-finish-the-job-francesco-b",
+   "kind": "episode",
+   "title": "Your Tests Pass. Can Your AI Agent Finish the Job? | Francesco Bonacci, Cua",
+   "topics": {
+    "code_review": 0.35,
+    "model_evals": 0.23,
+    "agents": 0.79,
+    "open_source": 0.2,
+    "decision_models": 0.06,
+    "education": 0.09,
+    "community": 0.05,
+    "background": 0.03
+   }
+  },
+  {
+   "id": "episode:anthropic-s-opus-5-5-is-here-is-the-higher-reasoning-effort-",
+   "kind": "episode",
+   "title": "Anthropic's Opus 5.5 Is Here - Is The Higher Reasoning Effort Worth It?",
+   "topics": {
+    "code_review": 0.14,
+    "model_evals": 0.61,
+    "agents": 0.18,
+    "open_source": 0.06,
+    "decision_models": 0.04,
+    "education": 0.14,
+    "community": 0.04,
+    "background": 0.02
+   }
+  },
+  {
+   "id": "profile:about-hendrik",
+   "kind": "profile",
+   "title": "About Hendrik",
+   "topics": {
+    "code_review": 0.07,
+    "model_evals": 0.04,
+    "agents": 0.13,
+    "open_source": 0.23,
+    "decision_models": 0.02,
+    "education": 0.03,
+    "community": 0.28,
+    "background": 0.98
+   }
+  }
+ ]
+}

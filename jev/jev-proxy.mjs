@@ -15,10 +15,14 @@
 // guests, and a next_guest question rides along in the same call. Hosted on
 // Railway (jev/deploy.sh); it binds 0.0.0.0 there. Browsers may call it from the
 // origins in JEV_ORIGINS (comma-separated; defaults to krackedtools.dev and localhost).
+//
+// POST /site answers the krackedtools.dev homepage's questions about its visitor (site.mjs): it shares
+// the key and the daily cap with Henni, with its own per-visitor limit and a larger body allowance.
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { judge as siteJudge } from './site.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT) || 8787;
@@ -216,7 +220,13 @@ function apiKey() {
 
 // The HTTP side: CORS for the site only, a per-visitor limit keyed on Railway's X-Real-IP (callers
 // can forge X-Forwarded-For), the daily cap, small bodies only, and errors without details.
-export function createHandler({ lim = limiter(), apiKey: key = apiKey, decide: ask = decide, log = console.log } = {}) {
+export function createHandler({ lim = limiter(), siteLim = limiter({ perMin: 16 }), apiKey: key = apiKey, decide: ask = decide, site = siteJudge, log = console.log } = {}) {
+  const ROUTES = {
+    '/decide': { lim: lim, ask: ask, max: 4096,
+      say: out => `${out.mock ? 'mock' : out.model} → ${out.activity} (${Math.round((out.confidence || 0) * 100)}%) · guest ${out.guest} · ${out.ms}ms ${out.tokens}tok` },
+    '/site': { lim: siteLim, ask: site, max: 12288,
+      say: out => `site · ${out.mock ? 'mock' : out.model} → ${out.persona && out.persona.top} · ${out.ms}ms ${out.tokens}tok` }
+  };
   return (req, res) => {
     const origin = req.headers.origin;
     const head = { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', Vary: 'Origin' };
@@ -224,14 +234,15 @@ export function createHandler({ lim = limiter(), apiKey: key = apiKey, decide: a
     const send = (code, body) => { if (!res.headersSent) { res.writeHead(code, head); res.end(JSON.stringify(body)); } };
     if (req.method === 'OPTIONS') { res.writeHead(204, { ...head, 'Access-Control-Allow-Methods': 'POST', 'Access-Control-Allow-Headers': 'Content-Type' }); return res.end(); }
     if (req.method === 'GET' && req.url === '/') return send(200, { ok: true, service: 'jev-proxy', key: key() ? 'set' : 'missing (mock answers)' });
-    if (req.method !== 'POST' || req.url !== '/decide') return send(404, { ok: false, error: 'not found' });
+    const route = req.method === 'POST' && Object.hasOwn(ROUTES, req.url) ? ROUTES[req.url] : null;
+    if (!route) return send(404, { ok: false, error: 'not found' });
     const ip = String(req.headers['x-real-ip'] || '').trim() || req.socket.remoteAddress || '?';
-    if (!lim.allow(ip)) return send(429, { ok: false, error: 'slow down' });
+    if (!route.lim.allow(ip)) return send(429, { ok: false, error: 'slow down' });
     let body = '', big = false;
     req.on('data', c => {
       if (big) return;
       body += c;
-      if (body.length > 4096) { big = true; send(413, { ok: false, error: 'too big' }); req.resume(); }
+      if (body.length > route.max) { big = true; send(413, { ok: false, error: 'too big' }); req.resume(); }
     });
     req.on('end', async () => {
       if (big) return;
@@ -239,8 +250,8 @@ export function createHandler({ lim = limiter(), apiKey: key = apiKey, decide: a
       try { raw = JSON.parse(body); } catch { return send(400, { ok: false, error: 'bad json' }); }
       try {
         const k = key();
-        const out = await ask(raw, k && lim.spend() ? k : '');
-        log(new Date().toISOString().slice(11, 19), out.ok ? `${out.mock ? 'mock' : out.model} → ${out.activity} (${Math.round((out.confidence || 0) * 100)}%) · guest ${out.guest} · ${out.ms}ms ${out.tokens}tok` : `error ${out.status}: ${out.error}`);
+        const out = await route.ask(raw, k && lim.spend() ? k : '');
+        log(new Date().toISOString().slice(11, 19), out.ok ? route.say(out) : `error ${out.status}: ${out.error}`);
         send(out.ok ? 200 : 502, out.ok ? out : { ok: false, error: 'jev unavailable' });
       } catch (e) {
         log('error', e.message);

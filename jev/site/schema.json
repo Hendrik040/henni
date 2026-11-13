@@ -1,0 +1,90 @@
+{
+  "topics": {
+    "code_review": "AI code review",
+    "model_evals": "comparing AI models and running benchmarks",
+    "agents": "AI coding agents and software factories",
+    "open_source": "open-source developer tools",
+    "decision_models": "decision models such as TypeSafe's Jev",
+    "education": "AI in education",
+    "community": "developer events, meetups and hackathons",
+    "background": "Hendrik's career and professional background"
+  },
+  "formats": {
+    "writing": "reading articles",
+    "video": "watching or listening to recorded conversations",
+    "events": "in-person events",
+    "projects": "code and software projects"
+  },
+  "personas": {
+    "developer": "A software developer: spends their time on technical articles, code and open-source projects",
+    "engineering_leader": "An engineering manager or leader: spends their time on how teams adopt AI agents, software factories and review processes",
+    "recruiter": "A recruiter or hiring manager: spends their time on Hendrik's profile, his job and his track record",
+    "organizer": "An event or podcast organizer: spends their time on the events Hendrik hosted or spoke at and on his podcast",
+    "founder": "A founder or investor: spends their time on the company Hendrik is building and on his day job",
+    "educator": "A professor or educator: spends their time on AI in education"
+  },
+  "intents": {
+    "learn": "Learn something from the articles or videos",
+    "assess": "Find out who Hendrik is and what he has done",
+    "contact": "Get in touch with Hendrik",
+    "follow": "Keep up with new posts, episodes or events",
+    "browse": "Look around with no particular goal"
+  },
+  "depth": [
+    "Glances at headings and moves on",
+    "Reads a few items that catch their eye",
+    "Reads most of what they stop at",
+    "Studies items closely and spends minutes on them"
+  ],
+  "sections": {
+    "work": "work (the day job at CodeRabbit)",
+    "projects": "projects (n-aible and open-source tools)",
+    "writing": "writing (blog posts)",
+    "podcasts": "podcasts (videos from The Merge)",
+    "events": "events (talks, meetups and hackathons)",
+    "about": "about (Hendrik's profile)",
+    "contact": "contact"
+  },
+  "sources": {
+    "direct": "typed the address or used a bookmark",
+    "internal": "another page of this site",
+    "linkedin": "LinkedIn, a professional network",
+    "x": "X (Twitter)",
+    "github": "GitHub",
+    "youtube": "YouTube",
+    "search": "a search engine",
+    "luma": "Luma, an events site",
+    "coderabbit": "the CodeRabbit website or blog",
+    "typesafe": "the TypeSafe website",
+    "hackernews": "Hacker News",
+    "reddit": "Reddit",
+    "email": "a link in an email or newsletter",
+    "other": "another website"
+  },
+  "kinds": {
+    "work": {
+      "label": "current job of Hendrik",
+      "format": "projects"
+    },
+    "project": {
+      "label": "software project",
+      "format": "projects"
+    },
+    "post": {
+      "label": "blog post",
+      "format": "writing"
+    },
+    "episode": {
+      "label": "podcast episode",
+      "format": "video"
+    },
+    "event": {
+      "label": "event",
+      "format": "events"
+    },
+    "profile": {
+      "label": "profile",
+      "format": "writing"
+    }
+  }
+}

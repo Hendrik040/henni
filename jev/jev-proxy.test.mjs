@@ -154,3 +154,34 @@ test('failures never leak details to the caller', async () => {
   assert.equal(r.status, 502);
   assert.equal(body.includes('secret'), false);
 });
+
+// POST /site: the homepage's questions, on the same server
+test('/site answers with the site judge and shares the daily cap with Henni', async () => {
+  const keys = [];
+  const server = http.createServer(createHandler({ log: () => {}, lim: limiter({ perMin: 99, daily: 2 }), apiKey: () => 'k',
+    decide: async (raw, key) => { keys.push('decide:' + key); return { ok: true, mock: !key }; },
+    site: async (raw, key) => { keys.push('site:' + key); return { ok: true, mock: !key, persona: { top: 'developer' } }; } }));
+  await new Promise(r => server.listen(0, '127.0.0.1', r));
+  const base = `http://127.0.0.1:${server.address().port}`;
+  const post = (p, body) => fetch(base + p, { method: 'POST', headers: { 'Content-Type': 'text/plain', Origin: 'https://krackedtools.dev' }, body });
+  const a = await post('/site', '{}'), b = await post('/decide', '{}'), c = await (await post('/site', '{}')).json();
+  const big = await post('/site', '{"x":"' + 'y'.repeat(8000) + '"}');
+  const tooBig = await post('/site', '{"x":"' + 'y'.repeat(13000) + '"}').catch(() => ({ status: 'reset' }));
+  await new Promise(r => server.close(r));
+  assert.equal(a.headers.get('access-control-allow-origin'), 'https://krackedtools.dev');
+  assert.deepEqual(keys.slice(0, 3), ['site:k', 'decide:k', 'site:']);
+  assert.equal(c.mock, true);
+  assert.equal(big.status, 200, 'a site snapshot may be larger than a Henni one');
+  assert.equal(tooBig.status, 413);
+});
+
+test('the site judge describes a visit from ids only, in words', async () => {
+  const { judge } = await import('./site.mjs');
+  const fs = await import('node:fs');
+  const id = JSON.parse(fs.readFileSync(new URL('./site/catalogue.json', import.meta.url), 'utf8')).assets.find(a => a.kind === 'post').id;
+  const r = await judge({ arrival: { source: 'github' }, sections: { writing: 40 }, reached: ['writing'], dwell: { [id]: 30, 'post:not-on-the-page': 50 }, hovered: ['<script>'], clicked: [], pace: 40, hour: 10, page_s: 90 }, '');
+  assert.equal(r.mock, true);
+  assert.equal(r.saw.arrival.came_from, 'GitHub');
+  assert.equal(r.saw.items_spent_time_on.length, 1, 'unknown ids never reach Jev');
+  assert.equal(r.saw.items_hovered, undefined);
+});
