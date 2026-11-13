@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploy Henni's Jev proxy (jev/jev-proxy.mjs + guests/merge-guests.json) to a Railway service.
+# Deploy Henni's Jev proxy (jev/jev-proxy.mjs, jev/site.mjs + site/, guests/merge-guests.json) to a Railway service.
 #   RAILWAY_PROJECT=<project id> bash jev/deploy.sh
 # Optional: RAILWAY_SERVICE (default jev-proxy), RAILWAY_ENV_NAME (default production).
 # TYPESAFE_API_KEY lives in the service's Railway variables; this only uploads the code.
@@ -11,6 +11,8 @@ STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
 mkdir -p "$STAGE/jev" "$STAGE/guests"
 cp "$ROOT/jev/jev-proxy.mjs" "$STAGE/jev/"
+cp "$ROOT/jev/site.mjs" "$STAGE/jev/"
+mkdir -p "$STAGE/jev/site" && cp "$ROOT/jev/site/"*.json "$STAGE/jev/site/"
 cp "$ROOT/guests/merge-guests.json" "$STAGE/guests/"
 cat > "$STAGE/package.json" <<'JSON'
 {
