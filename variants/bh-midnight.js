@@ -289,13 +289,89 @@
     return { x: OX + p[0], y: OY - (p[1] * CP - p[2] * SP), z: p[1] * SP + p[2] * CP };
   }
 
+  // ---------- his words, in the visitor's language ----------
+  // The browser's preferred languages (navigator.languages) pick a table; anything
+  // else gets English. Hand-written, never generated: Jev decides what he does,
+  // these are only the words for it. ?henni-lang=de (or es, fr, pt, ja, zh, en) tries one out.
+  var WORDS = {
+    en: {
+      name: 'English', title: 'Hendrik — click to change what he’s doing', home: 'send Henni home', pin: 'pin Henni here', unpin: 'unpin Henni',
+      watch: 'Watch {name} on The Merge ↗', mate: 'Club-Mate break', wheel: 'watch this', dance: 'this is my song', ahh: 'ahh',
+      hi: 'oh, I’m running on Jev', hiLang: '', end: 'you made it to the end!', skim: 'skimming, huh?', idle: 'still there?',
+      running: 'running on Jev', says: 'Jev says: {act} · {p}% sure',
+      act: { walk: 'a walk', coding: 'code', podcast: 'podcast', surf: 'surf', sax: 'sax', cocktail: 'cocktails', ski: 'ski', kite: 'kite', sleep: 'nap' }
+    },
+    de: {
+      name: 'Deutsch', title: 'Hendrik – klick, damit er was anderes macht', home: 'Henni nach Hause schicken', pin: 'Henni hier festpinnen', unpin: 'Henni lösen',
+      watch: '{name} in The Merge ansehen ↗', mate: 'Club-Mate-Pause', wheel: 'guck mal', dance: 'das ist mein Song', ahh: 'ahh',
+      hi: 'oh, ich laufe auf Jev', hiLang: 'ich spreche Deutsch, weil dein Browser es tut', end: 'du hast es bis zum Ende geschafft!', skim: 'nur am Überfliegen, was?', idle: 'noch da?',
+      running: 'läuft auf Jev', says: 'Jev sagt: {act} · zu {p}{nb}% sicher',
+      act: { walk: 'Spaziergang', coding: 'Code', podcast: 'Podcast', surf: 'Surfen', sax: 'Saxofon', cocktail: 'Cocktails', ski: 'Skifahren', kite: 'Kiten', sleep: 'Nickerchen' }
+    },
+    es: {
+      name: 'Español', title: 'Hendrik: haz clic para cambiar lo que hace', home: 'mandar a Henni a casa', pin: 'fijar a Henni aquí', unpin: 'soltar a Henni',
+      watch: 'Ver a {name} en The Merge ↗', mate: 'pausa de Club-Mate', wheel: 'mira esto', dance: 'esta es mi canción', ahh: 'ahh',
+      hi: 'oh, funciono con Jev', hiLang: 'te hablo en español porque tu navegador también', end: '¡llegaste al final!', skim: 'leyendo por encima, ¿eh?', idle: '¿sigues ahí?',
+      running: 'funciono con Jev', says: 'Jev dice: {act} · {p}{nb}% seguro',
+      act: { walk: 'un paseo', coding: 'código', podcast: 'pódcast', surf: 'surf', sax: 'saxo', cocktail: 'cócteles', ski: 'esquí', kite: 'kite', sleep: 'siesta' }
+    },
+    fr: {
+      name: 'Français', title: 'Hendrik – clique pour changer ce qu’il fait', home: 'renvoyer Henni chez lui', pin: 'épingler Henni ici', unpin: 'détacher Henni',
+      watch: 'Voir {name} dans The Merge ↗', mate: 'pause Club-Mate', wheel: 'regarde ça', dance: 'c’est ma chanson', ahh: 'ahh',
+      hi: 'oh, je tourne sur Jev', hiLang: 'je parle français, comme ton navigateur', end: 'tu as tout lu{nb}!', skim: 'tu survoles, hein{nb}?', idle: 'toujours là{nb}?',
+      running: 'je tourne sur Jev', says: 'Jev dit{nb}: {act} · sûr à {p}{nb}%',
+      act: { walk: 'une balade', coding: 'du code', podcast: 'podcast', surf: 'surf', sax: 'saxo', cocktail: 'cocktails', ski: 'ski', kite: 'kite', sleep: 'sieste' }
+    },
+    pt: {
+      name: 'Português', title: 'Hendrik – clique para mudar o que ele está fazendo', home: 'mandar o Henni para casa', pin: 'fixar o Henni aqui', unpin: 'soltar o Henni',
+      watch: 'Ver {name} no The Merge ↗', mate: 'pausa para Club-Mate', wheel: 'olha só', dance: 'essa é a minha música', ahh: 'ahh',
+      hi: 'oh, eu rodo no Jev', hiLang: 'falo português porque seu navegador também fala', end: 'você chegou ao fim!', skim: 'só passando o olho, né?', idle: 'ainda está aí?',
+      running: 'rodando no Jev', says: 'Jev diz: {act} · {p}% de certeza',
+      act: { walk: 'uma caminhada', coding: 'código', podcast: 'podcast', surf: 'surfe', sax: 'sax', cocktail: 'coquetéis', ski: 'esqui', kite: 'kite', sleep: 'soneca' }
+    },
+    ja: {
+      name: '日本語', title: 'Hendrik — クリックで行動が変わるよ', home: 'Henni をおうちに帰す', pin: 'Henni をここに固定', unpin: 'Henni の固定を外す',
+      watch: 'The Merge で {name} を見る ↗', mate: 'クラブマテ休憩', wheel: '見てて', dance: 'この曲好きなんだ', ahh: 'ふぅ',
+      hi: 'あ、ぼくは Jev で動いてるよ', hiLang: 'ブラウザが日本語だから日本語で話すね', end: '最後まで読んだね！', skim: '流し読み中？', idle: 'まだいる？',
+      running: 'Jev で動作中', says: 'Jev の判断：{act} · 確信度 {p}%',
+      act: { walk: '散歩', coding: 'コーディング', podcast: 'ポッドキャスト', surf: 'サーフィン', sax: 'サックス', cocktail: 'カクテル', ski: 'スキー', kite: 'カイト', sleep: 'お昼寝' }
+    },
+    zh: {
+      name: '中文', title: 'Hendrik —— 点一下，换件事做', home: '送 Henni 回家', pin: '把 Henni 固定在这里', unpin: '取消固定 Henni',
+      watch: '在 The Merge 观看 {name} ↗', mate: 'Club-Mate 小憩', wheel: '看我的', dance: '这是我的歌', ahh: '啊～',
+      hi: '哦，我是靠 Jev 运行的', hiLang: '你的浏览器说中文，所以我也说中文', end: '你读到最后了！', skim: '在快速浏览吗？', idle: '还在吗？',
+      running: '由 Jev 驱动', says: 'Jev 说：{act} · {p}% 把握',
+      act: { walk: '散步', coding: '写代码', podcast: '播客', surf: '冲浪', sax: '萨克斯', cocktail: '鸡尾酒', ski: '滑雪', kite: '风筝冲浪', sleep: '小睡' }
+    }
+  };
+  var LANG = (function () {
+    var forced = '';
+    try { forced = (new URLSearchParams(location.search).get('henni-lang') || '').toLowerCase(); } catch (e) { /* no location */ }
+    if (WORDS[forced]) return forced;
+    var prefs = [];
+    try { prefs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']).map(String); } catch (e) { /* no navigator */ }
+    for (var i = 0; i < prefs.length; i++) {
+      var tag = prefs[i].toLowerCase(), base = tag.split('-')[0];
+      if (base === 'zh') { if (/hant|-tw|-hk|-mo/.test(tag)) continue; return 'zh'; }   // only Simplified Chinese is written
+      if (base === 'en') return 'en';
+      if (WORDS[base]) return base;
+    }
+    return 'en';
+  })();
+  var SAY = WORDS[LANG];
+  function say(key, vars) {
+    var str = SAY[key] != null ? SAY[key] : WORDS.en[key];
+    vars = vars || {};
+    return String(str).replace(/\{(\w+)\}/g, function (m, k) { return k === 'nb' ? ' ' : vars[k] != null ? vars[k] : m; });
+  }
+
   // ---------- frame buffer ----------
   // kind: 0 empty · 1 Hendrik (+ what he holds) · 2 shadow · 4 overlay
   //       5 scenery (bar, couch, boards, stand, kite) · 7 water
   var canvas = document.createElement('canvas');
   canvas.width = W; canvas.height = H;
   canvas.setAttribute('aria-hidden', 'true');
-  var PET_TITLE = 'Hendrik — click to change what he’s doing';
+  var PET_TITLE = say('title');
   canvas.title = PET_TITLE;
   canvas.style.cssText = 'position:fixed;left:0;top:0;width:' + W * SCALE + 'px;height:' + H * SCALE + 'px;' +
     'z-index:60;image-rendering:pixelated;will-change:transform;pointer-events:none;' +
@@ -313,7 +389,7 @@
   var bubble = document.createElement('button');
   bubble.type = 'button';
   bubble.className = 'kt-pet-bubble';
-  bubble.textContent = 'send Henni home';
+  bubble.textContent = say('home');
   bubble.style.cssText = 'position:fixed;left:0;top:0;z-index:61;display:none;';
   var bubbleCss = document.createElement('style');
   bubbleCss.textContent = '.kt-pet-bubble{font:12px/1 var(--font-mono,ui-monospace,monospace);' +
@@ -1622,7 +1698,7 @@
   // a sit-down scene he has settled into.
   var OUT_FIRST = 45, OUT_MIN = 60, OUT_MAX = 120, OUT_WALK = 95, MATE_T = 50, WHEEL_T = 0.85, WHEEL_PX = 105, TADA_T = 1.5;
   var OUT_ON = { walk: 1, coding: 1, podcast: 1, sax: 1, cocktail: 1 };
-  var OUT_KINDS = [['mate', 2, 'Club-Mate break'], ['wheel', 1, 'watch this'], ['dance', 1, 'this is my song']];
+  var OUT_KINDS = [['mate', 2, say('mate')], ['wheel', 1, say('wheel')], ['dance', 1, say('dance')]];
   var outing = null, outForce = null;
   if (typeof state.free !== 'number') state.free = 0;           // seconds on foot since the last outing
   if (typeof state.outIn !== 'number') state.outIn = OUT_FIRST;  // ... when the next one is due
@@ -1683,7 +1759,7 @@
     } else {
       b.t += dt;
       if (b.id === 'wheel') { dir = b.d; state.x = b.x0 + b.d * WHEEL_PX * Math.min(b.t / WHEEL_T, b.n); }
-      if (b.id === 'mate' && b.t > 6 && !b.ahh) { b.ahh = true; think('ahh', 2.2); }   // after the first sip
+      if (b.id === 'mate' && b.t > 6 && !b.ahh) { b.ahh = true; think(say('ahh'), 2.2); }   // after the first sip
       if (b.t < b.T) return;
     }
     if (++outing.i >= outing.beats.length) endOuting();
@@ -1799,7 +1875,7 @@
   var HOST = typeof location !== 'undefined' ? location.hostname : '', ON_SITE = /^(www\.)?krackedtools\.dev$/.test(HOST);
   var JEV_URL = /^(localhost|127\.0\.0\.1)$/.test(HOST) ? 'http://' + HOST + ':8787/decide' : ON_SITE ? JEV_HOSTED : '';
   var JEV_EVERY = 25, JEV_FRESH = 60, JEV_SURE = 0.3;
-  var LABEL = { walk: 'a walk', coding: 'code', podcast: 'podcast', surf: 'surf', sax: 'sax', cocktail: 'cocktails', ski: 'ski', kite: 'kite', sleep: 'nap' };
+  var LABEL = SAY.act;
   var jev = null, jevAt = 0, jevUsed = 0, jevBusy = false, jevNext = 2, jevCount = 0, jevSaid = {};
   var pageAt = 0, inputAt = 0, snapAt = 0, scrolled = 0, scrollWas = 0;
   // where the visitor is: this page (as the site lists it), an episode it embeds, a podcast card under the cursor
@@ -1891,11 +1967,12 @@
   function muse(d) {                                            // now and then he says what's on his mind
     if (current === 'sleep' || thoughtOn) return;
     var tag = d.mock ? ' (mock)' : '';
-    if (!state.jevHi) { state.jevHi = true; think('oh, I’m running on Jev' + tag, 5); return; }
-    if (d.finished > 0.8 && !jevSaid.fin) { jevSaid.fin = 1; think('you made it to the end!', 4); return; }
-    if (d.skimming > 0.8 && !jevSaid.skim) { jevSaid.skim = 1; think('skimming, huh?', 4); return; }
-    if (d.idle > 0.8 && !jevSaid.idle) { jevSaid.idle = 1; think('still there?', 4); return; }
-    if (jevCount % 4 === 0) think(d.mock ? 'running on Jev' + tag : 'running on Jev · ' + d.ms + ' ms', 4);
+    if (!state.jevHi) { state.jevHi = true; think(say('hi') + tag, 5); return; }
+    if (LANG !== 'en' && !state.langHi) { state.langHi = true; think(say('hiLang'), 5); return; }   // once per tab: why he speaks this language
+    if (d.finished > 0.8 && !jevSaid.fin) { jevSaid.fin = 1; think(say('end'), 4); return; }
+    if (d.skimming > 0.8 && !jevSaid.skim) { jevSaid.skim = 1; think(say('skim'), 4); return; }
+    if (d.idle > 0.8 && !jevSaid.idle) { jevSaid.idle = 1; think(say('idle'), 4); return; }
+    if (jevCount % 4 === 0) think(d.mock ? say('running') + tag : say('running') + ' · ' + d.ms + ' ms', 4);
   }
   function askJev() {
     jevBusy = true;
@@ -1924,7 +2001,7 @@
     var pick = jevPick();
     if (!pick) return;
     for (var k = 0; k < ACTIVITIES.length; k++) if (ACTIVITIES[k].id === pick.id) state.elapsed = ACTIVITIES[k].at;
-    if (!(jev.mock && ON_SITE)) think('Jev says: ' + LABEL[pick.id] + ' · ' + Math.round(pick.p * 100) + '% sure', 5);
+    if (!(jev.mock && ON_SITE)) think(say('says', { act: LABEL[pick.id], p: Math.round(pick.p * 100) }), 5);
   }
 
   // ---------- loop ----------
@@ -2065,7 +2142,7 @@
     bubbleHide = 0;
     if (!bubbleOn) {
       bubbleOn = true; bubbleAt = null; bubble.style.display = 'block';
-      pinBtn.textContent = state.pinned ? 'unpin Henni' : 'pin Henni here';
+      pinBtn.textContent = state.pinned ? say('unpin') : say('pin');
       pinBtn.style.display = 'block';
     }
   }
@@ -2077,7 +2154,7 @@
   pinBtn.addEventListener('click', function (e) {
     e.stopPropagation();
     state.pinned = !state.pinned;
-    pinBtn.textContent = state.pinned ? 'unpin Henni' : 'pin Henni here';
+    pinBtn.textContent = state.pinned ? say('unpin') : say('pin');
     save();
   });
   bubble.addEventListener('click', function (e) {
@@ -2105,7 +2182,7 @@
     mouse = { x: e.clientX, y: e.clientY };
     var og = overGuest(e.clientX, e.clientY), over = !og && overPet(e.clientX, e.clientY);
     canvas.style.pointerEvents = og || over ? 'auto' : 'none';
-    canvas.title = og ? 'Watch ' + og.name + ' on The Merge ↗' : PET_TITLE;
+    canvas.title = og ? say('watch', { name: og.name }) : PET_TITLE;
     if (over) showBubble(); else if (e.target !== bubble && e.target !== pinBtn) hideBubbleSoon();
   });
   window.addEventListener('mouseout', function (e) { if (!e.relatedTarget) mouse = null; });

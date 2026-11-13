@@ -4,7 +4,7 @@
 import fs from 'fs';
 const src = fs.readFileSync(process.argv[2], 'utf8');
 
-function run({ answer, host = 'localhost' }) {
+function run({ answer, host = 'localhost', search = '' }) {
   let cb = null, now = 0, saved = { elapsed: 30, x: 600, y: 500, wait: 30, arrived: true };
   const calls = [], said = [];
   const ctx = { createImageData: (w, h) => ({ data: new Uint8ClampedArray(w * h * 4), width: w, height: h }), putImageData() {} };
@@ -23,7 +23,7 @@ function run({ answer, host = 'localhost' }) {
   const failed = e => ({ then: (ok, bad) => (bad ? settled(bad(e)) : failed(e)) });
   const fetch = (url, opt) => { calls.push({ url, body: JSON.parse(opt.body) }); return answer ? settled({ json: () => answer }) : failed(new Error('offline')); };
   new Function('window', 'document', 'sessionStorage', 'performance', 'requestAnimationFrame', 'setInterval', 'location', 'fetch', src)(
-    window, document, ss, { now: () => now }, f => { cb = f; return 1; }, f => { globalThis.__save = f; return 0; }, { hostname: host, pathname: '/posts/test.html' }, fetch);
+    window, document, ss, { now: () => now }, f => { cb = f; return 1; }, f => { globalThis.__save = f; return 0; }, { hostname: host, pathname: '/posts/test.html', search }, fetch);
   const step = s => { const end = now + s * 1000; while (now < end) { now += 1000 / 60; cb(now); } globalThis.__save(); };
   step(4);  const first = { calls: calls.length, said: said.slice() };
   step(8);  // crosses the walk → coding boundary at 35 s
@@ -57,5 +57,13 @@ check('live site, mock answer: his timetable carries on', e.done.join() === 'wal
 
 const f = run({ answer: { ...jev, mock: true } });
 check('locally a mock answer still says so', f.said.some(x => x.includes('(mock)')), f.said);
+
+const de = run({ answer: jev, search: '?henni-lang=de' });
+check('German: first line says he runs on Jev', de.first.said[0] === 'oh, ich laufe auf Jev', de.first.said);
+check('German: says what Jev picked, in German', de.said.includes('Jev sagt: Surfen · zu 84\u00a0% sicher'), de.said);
+const ja = run({ answer: jev, search: '?henni-lang=ja' });
+check('Japanese: says what Jev picked, in Japanese', ja.said.includes('Jev の判断：サーフィン · 確信度 84%'), ja.said);
+const xx = run({ answer: jev, search: '?henni-lang=xx' });
+check('unknown language: English', xx.first.said[0] === 'oh, I’m running on Jev', xx.first.said);
 
 process.exit(fails.length ? 1 : 0);
