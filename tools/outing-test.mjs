@@ -39,6 +39,19 @@ function boot({ saved = {}, rand = 0.1, text = null } = {}) {
     pos() { const m = /translate\((-?\d+)px,(-?\d+)px\)/.exec(main.style.transform || ''); return m ? [+m[1] + OX * SCALE, +m[2] + OY * SCALE] : null; },
     state() { globalThis.__save(); return st; },
     click() { cl.click && cl.click({ clientX: -999, clientY: -999 }); },
+    // a click on the page itself (not on him); onLink: the click lands on a link
+    clickPage(x, y, onLink) { (wl.click || []).forEach(f => f({ button: 0, clientX: x, clientY: y, target: { closest: () => (onLink ? {} : null) } })); },
+    // press on him, drag to (x, y) over `secs`, let go
+    drag(from, to, secs) {
+      api.move(from[0], from[1]);
+      cl.mousedown && cl.mousedown({ button: 0, clientX: from[0], clientY: from[1], preventDefault() {} });
+      api.step(secs, tt => { const k = Math.min(1, (tt - api.t0) / secs); return [from[0] + (to[0] - from[0]) * k, from[1] + (to[1] - from[1]) * k]; });
+      (wl.mouseup || []).forEach(f => f({ button: 0 }));
+      cl.click && cl.click({ clientX: to[0], clientY: to[1] });   // the browser's click at the end of the drag
+      (wl.click || []).forEach(f => f({ button: 0, clientX: to[0], clientY: to[1], target: main }));
+    },
+    // a point on his body (for pressing on him)
+    body() { const p = api.pos(); return [p[0], p[1] - 60]; },
     // the bounding box of everything drawn on the main canvas this frame (him, shadow, props)
     bbox() {
       const img = main.img;
@@ -53,6 +66,7 @@ function boot({ saved = {}, rand = 0.1, text = null } = {}) {
     // run s seconds; mouse is [x, y], a function of time, or null; onFrame(t) sees every frame
     step(s, mouse, onFrame) {
       const end = now + s * 1000;
+      api.t0 = now / 1000;
       while (now < end) {
         now += 1000 / 60;
         if (mouse) {                                            // like a browser: mousemove only when the mouse moves
@@ -207,6 +221,61 @@ for (const [name, elapsed] of [['surfing', 126], ['asleep', 366]]) {
   const h = boot({ saved: { elapsed, free: 100, outIn: 20 } });
   h.step(10, roam);
   check(name + ': nothing of his own', !h.said.some(x => ['Club-Mate break', 'watch this', 'this is my song', 'backflip!', 'just looking around'].includes(x)), h.said);
+}
+
+// 13. a click anywhere on the page (not a link): he goes there
+{
+  const h = boot({ saved: { free: 0, outIn: 25 }, rand: MIX });
+  h.step(2, park);
+  h.clickPage(900, 420);
+  let best = 1e9;
+  h.step(6, null, () => { best = Math.min(best, dist(h.pos(), [900, 420])); });
+  check('a click on the page: he goes there', best < 8, best);
+  check('a click on the page: says he is on his way', h.said.includes('on my way!'), h.said);
+}
+// 14. a click on a link leaves him alone
+{
+  const h = boot({ saved: { free: 0, outIn: 25 }, rand: MIX });
+  h.step(2, park);
+  h.clickPage(900, 420, true);
+  let best = 1e9;
+  h.step(6, park, () => { best = Math.min(best, dist(h.pos(), [900, 420])); });
+  check('a click on a link: he does not go there', best > 100, best);
+}
+// 15. asleep, a click wakes him and he goes there
+{
+  const h = boot({ saved: { elapsed: 366, x: 600, y: 600 }, rand: MIX });
+  h.step(2, park);
+  h.clickPage(250, 300);
+  let best = 1e9;
+  h.step(8, null, () => { best = Math.min(best, dist(h.pos(), [250, 300])); });
+  const st = h.state();
+  check('asleep: a click wakes him up', st.elapsed < 35, st.elapsed);
+  check('asleep: and he goes where you clicked', best < 8, best);
+}
+// 16. press on him and drag: he hangs from the cursor and stays where he is put
+{
+  const h = boot({ saved: { free: 0, outIn: 25, x: 600, y: 600 }, rand: MIX });
+  h.step(1, null);
+  const e0 = h.state().elapsed;
+  const from = h.body();
+  let held = 0;
+  h.drag(from, [300, 300], 1.0);
+  const p = h.pos();
+  check('drag: he ends up under where you let go', dist(p, [300, 300 + 140]) < 6, p);
+  check('drag: letting go is not taken as a click on him', h.state().elapsed - e0 < 3, h.state().elapsed - e0);
+  check('drag: says whee', h.said.includes('whee!'), h.said);
+  const a0 = h.pos();
+  h.step(1, null);
+  check('drag: he stays put after landing (cursor gone)', dist(h.pos(), a0) < 2, [a0, h.pos()]);
+}
+// 17. a tiny press that does not move is still a click on him (skips ahead)
+{
+  const h = boot({ saved: { free: 0, outIn: 25, x: 600, y: 600 }, rand: MIX });
+  h.step(1, null);
+  h.click();
+  h.step(0.5, null);
+  check('a click on him still skips ahead in his day', h.state().elapsed >= 35, h.state().elapsed);
 }
 
 process.exit(fails.length ? 1 : 0);

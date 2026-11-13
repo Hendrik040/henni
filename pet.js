@@ -315,6 +315,7 @@
       hi: 'oh, I’m running on Jev', hiLang: '', end: 'you made it to the end!', skim: 'skimming, huh?', idle: 'still there?',
       running: 'running on Jev', says: 'Jev says: {act} · {p}% sure',
       flip: 'backflip!', roam: 'just looking around', back: 'there you are!',
+      coming: 'on my way!', whee: 'whee!',
       act: { walk: 'a walk', coding: 'code', podcast: 'podcast', surf: 'surf', sax: 'sax', cocktail: 'cocktails', ski: 'ski', kite: 'kite', sleep: 'nap' }
     },
     de: {
@@ -323,6 +324,7 @@
       hi: 'oh, ich laufe auf Jev', hiLang: 'ich spreche Deutsch, weil dein Browser es tut', end: 'du hast es bis zum Ende geschafft!', skim: 'nur am Überfliegen, was?', idle: 'noch da?',
       running: 'läuft auf Jev', says: 'Jev sagt: {act} · zu {p}{nb}% sicher',
       flip: 'Rückwärtssalto!', roam: 'ich schau mich mal um', back: 'da bist du ja!',
+      coming: 'bin unterwegs!', whee: 'huiii!',
       act: { walk: 'Spaziergang', coding: 'Code', podcast: 'Podcast', surf: 'Surfen', sax: 'Saxofon', cocktail: 'Cocktails', ski: 'Skifahren', kite: 'Kiten', sleep: 'Nickerchen' }
     },
     es: {
@@ -331,6 +333,7 @@
       hi: 'oh, funciono con Jev', hiLang: 'te hablo en español porque tu navegador también', end: '¡llegaste al final!', skim: 'leyendo por encima, ¿eh?', idle: '¿sigues ahí?',
       running: 'funciono con Jev', says: 'Jev dice: {act} · {p}{nb}% seguro',
       flip: '¡mortal hacia atrás!', roam: 'echando un vistazo', back: '¡ahí estás!',
+      coming: '¡voy!', whee: '¡yujuu!',
       act: { walk: 'un paseo', coding: 'código', podcast: 'pódcast', surf: 'surf', sax: 'saxo', cocktail: 'cócteles', ski: 'esquí', kite: 'kite', sleep: 'siesta' }
     },
     fr: {
@@ -339,6 +342,7 @@
       hi: 'oh, je tourne sur Jev', hiLang: 'je parle français, comme ton navigateur', end: 'tu as tout lu{nb}!', skim: 'tu survoles, hein{nb}?', idle: 'toujours là{nb}?',
       running: 'je tourne sur Jev', says: 'Jev dit{nb}: {act} · sûr à {p}{nb}%',
       flip: 'salto arrière{nb}!', roam: 'je fais un petit tour', back: 'te voilà{nb}!',
+      coming: 'j’arrive{nb}!', whee: 'youpi{nb}!',
       act: { walk: 'une balade', coding: 'du code', podcast: 'podcast', surf: 'surf', sax: 'saxo', cocktail: 'cocktails', ski: 'ski', kite: 'kite', sleep: 'sieste' }
     },
     pt: {
@@ -347,6 +351,7 @@
       hi: 'oh, eu rodo no Jev', hiLang: 'falo português porque seu navegador também fala', end: 'você chegou ao fim!', skim: 'só passando o olho, né?', idle: 'ainda está aí?',
       running: 'rodando no Jev', says: 'Jev diz: {act} · {p}% de certeza',
       flip: 'mortal para trás!', roam: 'dando uma volta', back: 'aí está você!',
+      coming: 'tô indo!', whee: 'uhuuu!',
       act: { walk: 'uma caminhada', coding: 'código', podcast: 'podcast', surf: 'surfe', sax: 'sax', cocktail: 'coquetéis', ski: 'esqui', kite: 'kite', sleep: 'soneca' }
     },
     ja: {
@@ -355,6 +360,7 @@
       hi: 'あ、ぼくは Jev で動いてるよ', hiLang: 'ブラウザが日本語だから日本語で話すね', end: '最後まで読んだね！', skim: '流し読み中？', idle: 'まだいる？',
       running: 'Jev で動作中', says: 'Jev の判断：{act} · 確信度 {p}%',
       flip: 'バク宙！', roam: 'ちょっとお散歩', back: 'いたいた！',
+      coming: '今行く！', whee: 'わーい！',
       act: { walk: '散歩', coding: 'コーディング', podcast: 'ポッドキャスト', surf: 'サーフィン', sax: 'サックス', cocktail: 'カクテル', ski: 'スキー', kite: 'カイト', sleep: 'お昼寝' }
     },
     zh: {
@@ -363,6 +369,7 @@
       hi: '哦，我是靠 Jev 运行的', hiLang: '你的浏览器说中文，所以我也说中文', end: '你读到最后了！', skim: '在快速浏览吗？', idle: '还在吗？',
       running: '由 Jev 驱动', says: 'Jev 说：{act} · {p}% 把握',
       flip: '后空翻！', roam: '随便逛逛', back: '找到你啦！',
+      coming: '来啦！', whee: '哇～！',
       act: { walk: '散步', coding: '写代码', podcast: '播客', surf: '冲浪', sax: '萨克斯', cocktail: '鸡尾酒', ski: '滑雪', kite: '风筝冲浪', sleep: '小睡' }
     }
   };
@@ -1726,6 +1733,7 @@
   var SCENE = { coding: 1, sax: 1, cocktail: 1 };                // sit-down scenes he can set up at a spot of his own
   var BOARD = { surf: 1, ski: 1, kite: 1 };                      // on a board he rides his own way instead (no tricks, no stops)
   var RIDE = 230;                                               // px/s on a board
+  var GO_RUN = 200;                                             // px/s to a spot you clicked
   var OUT_KINDS = [['ride', 0, ''], ['roam', 3, say('roam')], ['mate', 1, say('mate')], ['wheel', 1, say('wheel')], ['flip', 1, say('flip')], ['dance', 1, say('dance')]];
   // how much room he takes up (px, bottom-centred on his feet): on his own, and with a scene set up
   var FOOT = { him: [110, 140], scene: [340, 250] };
@@ -1825,7 +1833,8 @@
     b.t = 0;
     if (b.id === 'go') {                                        // a gentle curve to a spot of his own, not a beeline
       var nb = outing.beats[outing.i + 1], scene = nb && nb.id === 'look' && SCENE[current];
-      var to = outSpot(scene ? FOOT.scene : FOOT.him), dx = to[0] - state.x, dy = to[1] - state.y, bend = (Math.random() - 0.5) * 0.6;
+      var to = b.to ? [clamp(b.to[0], 24, window.innerWidth - 24), clamp(b.to[1], 130, window.innerHeight - 6)] : outSpot(scene ? FOOT.scene : FOOT.him);
+      var dx = to[0] - state.x, dy = to[1] - state.y, bend = (Math.random() - 0.5) * (b.to ? 0.2 : 0.6);
       b.from = [state.x, state.y]; b.to = to; b.s = 0;
       b.via = [(state.x + to[0]) / 2 - dy * bend, (state.y + to[1]) / 2 + dx * bend];
       b.len = Math.hypot(dx, dy) * (1 + Math.abs(bend) * 0.5);
@@ -1849,7 +1858,7 @@
     var b = outing.beats[outing.i];
     if (b.t == null) outBegin(b);
     if (b.id === 'go') {
-      b.s = b.len < 4 ? 1 : Math.min(1, b.s + (outing.kind === 'ride' ? RIDE : OUT_WALK) * dt / b.len);
+      b.s = b.len < 4 ? 1 : Math.min(1, b.s + (outing.kind === 'ride' ? RIDE : b.to ? GO_RUN : OUT_WALK) * dt / b.len);
       var u = b.s, v = 1 - u;
       var nx = v * v * b.from[0] + 2 * v * u * b.via[0] + u * u * b.to[0], ny = v * v * b.from[1] + 2 * v * u * b.via[1] + u * u * b.to[1];
       var step = Math.hypot(nx - state.x, ny - state.y);
@@ -1886,7 +1895,7 @@
   function drawOuting(dt) {
     var b = outing.beats[outing.i], p = pose();
     if (b.t == null) outBegin(b);
-    if (outing.kind === 'ride') { DRAW[current](dt); return; }   // surfing, skiing or kiting along a path of his own
+    if (outing.kind === 'ride' || (outing.kind === 'goto' && BOARD[current])) { DRAW[current](dt); return; }   // surfing, skiing or kiting along a path of his own
     if (b.id === 'mate') { drawMate(b, p); return; }
     if (b.id === 'wheel') { drawWheel(b, p); return; }
     if (b.id === 'dance') { drawDance(b, p); return; }
@@ -1961,6 +1970,16 @@
     var spin = child(WORLD, 0, 18 + h - 2.2 * crouch, 0, 0, 0, b.face * th);
     shadow(0, 10 - 4 * tuck, 2);
     hendrik(child(spin, 0, -18, 0, 0, p.yaw, 0), p);             // side-on inside the spin, so he goes over backwards, not sideways
+    finish();
+  }
+  // held up by the hands: arms up, legs dangling and swinging, tilting the way he is being pulled
+  function drawHeld() {
+    var p = pose(), sw = Math.sin(t * 7) * 0.28;
+    p.yaw = 0; p.face = ((t * 2) | 0) % 2 ? 'smile' : 'talk';
+    p.aA = [0, 0, -2.85]; p.aB = [0, 0, 2.85];
+    p.lA = [sw, 0, -0.08]; p.lB = [-sw, 0, 0.08];
+    p.rz = clamp(-grab.vx * 0.0012, -0.45, 0.45);
+    hendrik(rootOf(p), p);
     finish();
   }
   // a dance: a disco point that swaps hands, hips swaying, a bounce, singing along, notes rising
@@ -2178,14 +2197,19 @@
     moving = false;
     var inView = keepInView();
     if (outing && (state.pinned || studioCard)) endOuting();
-    else if (outing && (BOARD[act.id] ? outing.kind !== 'ride' : !OUT_ON[act.id] || outing.kind === 'ride')) afterOuting();   // the day moved on under him
-    if (!outing && (OUT_ON[act.id] || BOARD[act.id]) && !state.pinned && !bubbleOn && !studioCard && (act.id !== 'podcast' || still < 0.35)) {   // never out of a running studio
+    else if (outing && (BOARD[act.id] ? outing.kind !== 'ride' && outing.kind !== 'goto' : !OUT_ON[act.id] || outing.kind === 'ride')) afterOuting();   // the day moved on under him
+    if (!outing && !(grab && grab.on) && (OUT_ON[act.id] || BOARD[act.id]) && !state.pinned && !bubbleOn && !studioCard && (act.id !== 'podcast' || still < 0.35)) {   // never out of a running studio
       state.free += dt;
       if (state.free >= state.outIn && inView) startOuting();
     }
     // while the studio is up he stays at the desk as long as the cursor stays over it, so a guest can be clicked
     var studioHold = act.id === 'podcast' && still >= 0.35 && mouse && mouse.x >= boxX && mouse.x < boxX + W * SCALE && mouse.y >= boxY && mouse.y < boxY + H * SCALE;
-    if (outing) { if (inView && !bubbleOn) outTick(dt); }
+    if (grab && grab.on && mouse) {                             // held: he hangs from the cursor by his hands
+      var hx = clamp(mouse.x, 24, window.innerWidth - 24);
+      grab.vx += ((hx - state.x) / Math.max(dt, 0.001) - grab.vx) * (1 - Math.exp(-dt * 10));
+      state.x = hx; state.y = Math.min(window.innerHeight - 6, mouse.y + HOLD_DY);
+    }
+    else if (outing) { if (inView && !bubbleOn) outTick(dt); }
     else if (mouse && act.speed > 0 && inView && !bubbleOn && !state.pinned && !studioHold) {
       var off = act.off || OFFSET_X;
       var tx = mouse.x + off * (mouse.x > window.innerWidth - 160 ? -1 : 1);
@@ -2227,7 +2251,7 @@
     if (scrUsed || scrDirty) sbuf.fill(0);
     scrUsed = false;
     tagReq = null; tagAt = null; gLo = gHi = 0; gNow = null;
-    if (outing) drawOuting(dt); else DRAW[act.id](dt);
+    if (grab && grab.on) drawHeld(); else if (outing) drawOuting(dt); else DRAW[act.id](dt);
     if (scrUsed || scrDirty) { sctx.putImageData(simg, 0, 0); scrDirty = scrUsed; }
     if (poof > 0) {                                           // a few squares on the 7px grid, not a sparkle
       poof -= dt;
@@ -2313,11 +2337,55 @@
     var og = overGuest(e.clientX, e.clientY), over = !og && overPet(e.clientX, e.clientY);
     canvas.style.pointerEvents = og || over ? 'auto' : 'none';
     canvas.title = og ? say('watch', { name: og.name }) : PET_TITLE;
-    if (over) showBubble(); else if (e.target !== bubble && e.target !== pinBtn) hideBubbleSoon();
+    if (over && !(grab && grab.on)) showBubble(); else if (e.target !== bubble && e.target !== pinBtn) hideBubbleSoon();
   });
   window.addEventListener('mouseout', function (e) { if (!e.relatedTarget) mouse = null; });
   window.addEventListener('pagehide', save);
+  // ---------- pick him up and put him somewhere else; or click anywhere and he goes there ----------
+  var grab = null, droppedAt = -1e9, HOLD_DY = 140;             // HOLD_DY: his feet hang this far below the cursor
+  canvas.addEventListener('mousedown', function (e) {
+    if (e.button !== 0 || overGuest(e.clientX, e.clientY) || !overPet(e.clientX, e.clientY) || state.leaving) return;
+    grab = { x: e.clientX, y: e.clientY, on: false, vx: 0 };
+    if (e.preventDefault) e.preventDefault();                   // no text selection while dragging
+  });
+  window.addEventListener('mousemove', function (e) {
+    if (!grab || grab.on || Math.hypot(e.clientX - grab.x, e.clientY - grab.y) < 6) return;
+    grab.on = true;                                             // it's a drag, not a click
+    if (outing) endOuting();
+    if (ACTIVITIES[activityIndex()].id === 'sleep') state.elapsed = 0;   // picked up from the couch: awake
+    if (current === 'podcast') foldStudio();
+    bubbleOn = false; bubble.style.display = 'none'; pinBtn.style.display = 'none';
+    thoughtOn = false; thought.style.display = 'none';
+    canvas.style.cursor = 'grabbing';
+  });
+  window.addEventListener('mouseup', function () {
+    if (!grab) return;
+    if (grab.on) {                                              // put down here
+      droppedAt = performance.now();
+      state.free = 0; state.outIn = OUT_MIN + Math.random() * (OUT_MAX - OUT_MIN); still = 0;
+      outing = { kind: 'goto', beats: [{ id: 'look' }], i: 0 };   // stays where he was put for a moment, then carries on
+      canvas.style.cursor = '';
+      think(say('whee'), 2);
+      save();
+    }
+    grab = null;
+  });
+  var GO_SKIP = 'a,button,input,textarea,select,option,label,summary,[role="button"],[role="link"],[contenteditable=""],[contenteditable="true"],iframe,video,audio';
+  window.addEventListener('click', function (e) {
+    if (e.button !== 0 || e.defaultPrevented || e.target === canvas || performance.now() - droppedAt < 400) return;
+    if (!state.arrived || state.home || state.leaving || state.pinned) return;
+    var tg = e.target;
+    if (tg && tg.closest && tg.closest(GO_SKIP)) return;        // links, buttons and fields do their own thing
+    try { var sel = window.getSelection && window.getSelection(); if (sel && !sel.isCollapsed) return; } catch (x) { /* no selection API */ }
+    if (ACTIVITIES[activityIndex()].id === 'sleep') state.elapsed = 0;   // a click wakes him
+    if (current === 'podcast') foldStudio();
+    endOuting();
+    outing = { kind: 'goto', beats: [{ id: 'go', to: [e.clientX, e.clientY] }, { id: 'look' }], i: 0 };
+    state.free = 0;
+    think(say('coming'), 2);
+  });
   canvas.addEventListener('click', function (e) {
+    if (performance.now() - droppedAt < 400) return;            // the click that ends a drag
     var og = e && overGuest(e.clientX, e.clientY);
     if (og) { window.open('https://www.youtube.com/watch?v=' + og.ep, '_blank', 'noopener'); return; }
     // asleep → wake up and start the day again; otherwise skip ahead (and back from any outing)
